@@ -101,6 +101,25 @@ header{padding:0 46px}
 .hmB button[data-d]{flex:0 0 46px;background:#ff4757}
 .hmE{color:#90a4ae;text-align:center;padding:30px 10px;font-size:13px}
 #hmClr{margin:0 12px 12px;padding:10px;border:none;border-radius:8px;background:#3a2530;color:#ff8a95;cursor:pointer}
+#cbFab{width:58px;height:58px;background:linear-gradient(135deg,#2e86de,#1b5fb8);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(30,100,200,.45)}
+#cbPanel{border:1px solid rgba(255,255,255,.08);border-radius:18px 18px 0 0;background:#0f171d;box-shadow:0 -8px 30px rgba(0,0,0,.5)}
+#cbHead{background:linear-gradient(135deg,#1b5fb8,#2e86de);border-radius:18px 18px 0 0;padding:12px 14px}
+.cbTitle{display:flex;align-items:center;gap:10px}
+.cbAv{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center}
+.cbT1{font-size:15px;font-weight:600;line-height:1.2}.cbT2{font-size:11px;opacity:.85;font-weight:400}
+.cbAct{display:flex;align-items:center}
+#cbHead button{width:34px;height:34px;margin-left:4px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+#cbHead button:active{background:rgba(255,255,255,.2)}
+#cbSt{background:#121c24;border-bottom:1px solid rgba(255,255,255,.05)}
+#cbSt:empty{display:none}
+.cbm{border-radius:14px}
+.cbm.bot{background:#1a2530;border-top-left-radius:4px}
+.cbm.usr{background:#2e86de;border-top-right-radius:4px}
+.yn button{background:#2e86de}.yn button:last-child{background:#2b3a47}
+#cbRow{background:#121c24;border-top:1px solid rgba(255,255,255,.06);align-items:center}
+#cbIn{border-radius:22px;padding:11px 16px;background:#1f2b36;color:#fff;outline:none}
+#cbIn::placeholder{color:#7f93a3}
+#cbSend{width:42px;height:42px;padding:0;border-radius:50%;background:#2e86de;display:flex;align-items:center;justify-content:center}
 </style>
 </head>
 <body>
@@ -131,9 +150,9 @@ header{padding:0 46px}
 </div>
 
 
-<button id="cbFab" title="AI Chatbot">🤖</button>
-<div id="cbPanel"><div id="cbHead"><span>🤖 NEET AI Chatbot</span><span><button id="cbMod" title="Gemma offline model">📦</button><button id="cbKey" title="API key">⚙️</button><button id="cbX">✕</button></span></div>
-<div id="cbSt"></div><input type="file" id="cbFile" accept=".task,.bin" hidden><div id="cbMsgs"></div><div id="cbRow"><input id="cbIn" placeholder="Jaise: Re-NEET 2026 mein Animal Kingdom ka sawal?"><button id="cbSend">Bhejo</button></div></div>
+<button id="cbFab" title="NEET Assistant" aria-label="Open NEET Assistant"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L3 21l1.9-5.6A8 8 0 1 1 21 12z"/><path d="M8.5 11h7M8.5 14.5h4"/></svg></button>
+<div id="cbPanel"><div id="cbHead"><div class="cbTitle"><div class="cbAv"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/></svg></div><div><div class="cbT1">NEET Assistant</div><div class="cbT2">PYQ doubts &amp; solutions</div></div></div><span class="cbAct"><button id="cbMod" title="Load offline model" aria-label="Load offline model"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg></button><button id="cbKey" title="Settings" aria-label="Settings"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button><button id="cbX" title="Close" aria-label="Close"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button></span></div>
+<div id="cbSt"></div><input type="file" id="cbFile" accept=".task,.bin" hidden><div id="cbMsgs"></div><div id="cbRow"><input id="cbIn" placeholder="Ask a question, e.g. Re-NEET 2026 Animal Kingdom"><button id="cbSend" aria-label="Send"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg></button></div></div>
 
 <!-- Mock test HTML data (base64), taaki sab kuch isi file ke andar rahe, koi 404 na ho -->
 
@@ -190,7 +209,7 @@ header{padding:0 46px}
   }
 
   function openInDriveApp(fileId) {
-    window.location.href = driveAppLink(fileId);
+    window.location.href = 'https://drive.google.com/file/d/' + fileId + '/view?usp=drivesdk';
   }
 
   function openPdfViewer(title, url) {
@@ -268,7 +287,7 @@ async function getModels(k){
   if(MODELS) return MODELS;
   let found=[];
   try{
-    const r=await fetch('https://generativelanguage.googleapis.com/v1beta/models?pageSize=200&key='+k);
+    const r=await fetch('https://generativelanguage.googleapis.com/v1beta/models?pageSize=200',{headers:{'x-goog-api-key':k}});
     if(r.ok){
       const d=await r.json();
       found=(d.models||[]).filter(m=>(m.supportedGenerationMethods||[]).includes('generateContent')).map(m=>m.name.replace('models/','')).filter(n=>/^gemini-([3-9]|\d{2,})(\.\d+)?-flash(-lite)?$/.test(n));
@@ -287,11 +306,11 @@ async function gem(prompt,json){
   for(const m of ms){
     for(let t=0;t<2;t++){
       try{
-        const r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${m}:generateContent?key=${k}`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents:[{parts:[{text:prompt}]}],generationConfig:json?{responseMimeType:'application/json'}:{}})});
+        const r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${m}:generateContent`,{method:'POST',headers:{'Content-Type':'application/json','x-goog-api-key':k},body:JSON.stringify({contents:[{parts:[{text:prompt}]}],generationConfig:json?{responseMimeType:'application/json'}:{}})});
         const d=await r.json().catch(()=>({}));
         if(!r.ok){
           const em=d.error?.message||('HTTP '+r.status);
-          if(/API key not valid|API_KEY_INVALID|API key expired/i.test(em)){const e=new Error('API key galat hai. ⚙️ dabake sahi key daalo.');e.fatal=true;throw e;}
+          if(/API key not valid|API_KEY_INVALID|API key expired|invalid authentication|UNAUTHENTICATED/i.test(em)){const e=new Error('API key galat hai. ⚙️ dabake sahi key daalo.');e.fatal=true;throw e;}
           last=m+': '+em;
           if(r.status===429&&t===0){await sleep(4000);continue;}
           break;
@@ -310,7 +329,7 @@ async function gem(prompt,json){
 
 async function askG(text){
   if(busy) return; usr(text);
-  if(needKey||!localStorage.getItem('cbKey')){localStorage.setItem('cbKey',text.trim());needKey=false;return bot('✅ Key save ho gayi. Ab apna sawal pucho.');}
+  if(needKey||!localStorage.getItem('cbKey')){const k=text.replace(/\s/g,'');if(!/^(AIza|AQ\.)[\w.-]{25,}$/.test(k)){needKey=true;return bot('Please paste a valid Gemini API key. It starts with <b>AIza</b> or <b>AQ.</b>. Get one free at aistudio.google.com/apikey');}localStorage.setItem('cbKey',k);needKey=false;return bot('API key saved. You can ask your question now.');}
   busy=true; const st=bot('Sawal dhundh raha hoon…');
   try{
     const list=QS.map(q=>`${qk(q)}|${q.subj}|${q.txt.replace(/\s+/g,' ').slice(0,170)}`).join('\n');
@@ -326,7 +345,7 @@ ${list}`,true));
     const b=bot('Kya aap inka answer jaanna chahte hain?<div class="yn"><button>✅ Yes</button><button>❌ No</button></div>');
     const [y,n]=b.querySelectorAll('button');
     y.onclick=()=>{b.querySelector('.yn').remove();usr('Yes');reveal(hit);};
-    n.onclick=()=>{b.querySelector('.yn').remove();usr('No');bot('Theek hai 👍 koi aur sawal puchna ho to batao.');};
+    n.onclick=()=>{b.querySelector('.yn').remove();usr('No');bot('Okay. Let me know if you have another question.');};
   }catch(e){st.innerHTML='⚠️ '+esc(e.message)+'<br><small>Key galat ho to ⚙️ dabake dobara daalo.</small>';}
   finally{busy=false;}
 }
@@ -343,9 +362,9 @@ async function reveal(hit){
 }
 
 const panel=document.getElementById('cbPanel');
-document.getElementById('cbFab').onclick=()=>{panel.classList.add('on');if(!cbM.children.length)bot(localStorage.getItem('cbKey')?'Namaste! 👋 Re-NEET 2026, Re-NEET 2024 aur NEET 2024 ke sawalon mein kuch bhi pucho, jaise: <i>Re-NEET 2026 mein Animal Kingdom se konsa sawal aaya?</i>':'Namaste! 👋 <b>📦</b> dabake Gemma model file (.task) select karo — phir app ke sawal <b>offline</b> chalenge. App ke bahar ke sawal ke liye <b>⚙️</b> se Gemini API key daalo (free: aistudio.google.com/apikey).');};
+document.getElementById('cbFab').onclick=()=>{panel.classList.add('on');if(!cbM.children.length)bot(localStorage.getItem('cbKey')?'Hello! I can help you find and understand questions from Re-NEET 2026, Re-NEET 2024 and NEET 2024. Try: <i>Which question on Animal Kingdom came in Re-NEET 2026?</i>':'Hello! To get started, open <b>Settings</b> (gear icon above) and add your Gemini API key (free at aistudio.google.com/apikey).');};
 document.getElementById('cbX').onclick=()=>panel.classList.remove('on');
-document.getElementById('cbKey').onclick=()=>{needKey=true;bot('Nayi Gemini API key paste karke bhejo.');};
+document.getElementById('cbKey').onclick=()=>{needKey=true;bot('Paste your new Gemini API key and send it.');};
 const go=()=>{const t=cbIn.value.trim();if(t){cbIn.value='';ask(t);}};
 document.getElementById('cbSend').onclick=go; cbIn.addEventListener('keydown',e=>{if(e.key==='Enter')go();});
 </script>
@@ -355,12 +374,15 @@ document.getElementById('cbSend').onclick=go; cbIn.addEventListener('keydown',e=
    e.g. MP_JS='./mediapipe/genai_bundle.mjs', MP_WASM='./mediapipe/wasm' */
 const MP_JS='https://cdn.jsdelivr.net/npm/@mediapipe/tasks-genai@latest/genai_bundle.mjs';
 const MP_WASM='https://cdn.jsdelivr.net/npm/@mediapipe/tasks-genai@latest/wasm';
+const IS_APP=!!(window.Capacitor&&window.Capacitor.isNativePlatform&&window.Capacitor.isNativePlatform())||(location.protocol==='https:'&&location.hostname==='localhost');
+try{const bk=localStorage.getItem('cbKey');if(bk&&!/^(AIza|AQ\.)[\w.-]{25,}$/.test(bk))localStorage.removeItem('cbKey');}catch(e){}
+
 let llm=null, loadingLLM=false;
 const cbSt=document.getElementById('cbSt'), cbFile=document.getElementById('cbFile');
 const setSt=t=>cbSt.textContent=t;
-setSt('📦 Offline AI: model load nahi hua');
+setSt('Offline AI: model not loaded');
 
-const APPINFO='App ka naam: NEET PYQ + Mock Test App. Tests: '+tests.map(t=>t.title).join('; ')+'. Har test ke 3 button hain: Question Paper (Google Drive app mein khulta hai), Answer Key (Drive app mein), Start Mock Test (app ke andar fullscreen mein khulta hai, upar Close button se band hota hai). Chatbot (🤖) in papers ke sawal topic se dhundta hai: '+PN.join('; ')+'. Sawal milne par Yes dabao to sahi answer aur explanation milta hai. NEET 2026 (3 May) aur NEET 2025 ke chatbot-sawal available nahi hain. 📦 se Gemma offline model load hota hai, ⚙️ se Gemini API key.';
+const APPINFO='App ka naam: NEET PYQ + Mock Test App. Tests: '+tests.map(t=>t.title).join('; ')+'. Har test ke 3 button hain: Question Paper (Google Drive app mein khulta hai), Answer Key (Drive app mein), Start Mock Test (app ke andar fullscreen mein khulta hai, upar Close button se band hota hai). Chatbot (chat button, neeche right) in papers ke sawal topic se dhundta hai: '+PN.join('; ')+'. Sawal milne par Yes dabao to sahi answer aur explanation milta hai. NEET 2026 (3 May) aur NEET 2025 ke chatbot-sawal available nahi hain. 📦 se Gemma offline model load hota hai, ⚙️ se Gemini API key.';
 
 async function opfs(){return navigator.storage.getDirectory();}
 async function saveModel(f){try{const h=await (await opfs()).getFileHandle('gemma.task',{create:true});await f.stream().pipeTo(await h.createWritable());return true;}catch(e){return false;}}
@@ -369,7 +391,9 @@ async function loadLLM(f){
   if(loadingLLM) return; loadingLLM=true; setSt('⏳ Gemma load ho raha hai… (1-2 min lag sakta hai)');
   try{
     if(!navigator.gpu) throw new Error('Is device/browser mein WebGPU nahi hai');
-    const m=await import(MP_JS), g=await m.FilesetResolver.forGenAiTasks(MP_WASM);
+    let m,g;
+    try{m=await import('./mediapipe/genai_bundle.mjs');g=await m.FilesetResolver.forGenAiTasks('./mediapipe/wasm');}
+    catch(e1){m=await import(MP_JS);g=await m.FilesetResolver.forGenAiTasks(MP_WASM);}
     llm=await m.LlmInference.createFromOptions(g,{baseOptions:{modelAssetBuffer:f.stream().getReader()},maxTokens:2048,topK:40,temperature:0.6,randomSeed:7});
     setSt('✅ Offline AI ready — Gemma 3 1B');
   }catch(e){llm=null;setSt('⚠️ Model load fail: '+e.message);}
@@ -410,7 +434,7 @@ async function localAsk(text){
   try{
     const hit=search(text);
     if(!hit.length){
-      if(!llm){bot('📦 dabake Gemma model load karo, tab app ke baare mein offline jawab de sakunga.');return;}
+      if(!llm){bot('Please load the offline model using the download icon above to get offline answers.');return;}
       const d=bot('…');
       await gma(`Tum NEET PYQ app ke offline assistant ho. Sirf neeche di gayi app ki jankari se Hinglish mein chhota jawab do. Jankari na ho to bolo "Ye mujhe app mein nahi mila".\n\nAPP: ${APPINFO}\n\nUser: ${text}`,d);
       return;
@@ -420,7 +444,7 @@ async function localAsk(text){
     const b=bot('Kya aap inka answer jaanna chahte hain?<div class="yn"><button>✅ Yes</button><button>❌ No</button></div>');
     const [y,n]=b.querySelectorAll('button');
     y.onclick=()=>{b.querySelector('.yn').remove();usr('Yes');revealL(hit);};
-    n.onclick=()=>{b.querySelector('.yn').remove();usr('No');bot('Theek hai 👍 koi aur sawal puchna ho to batao.');};
+    n.onclick=()=>{b.querySelector('.yn').remove();usr('No');bot('Okay. Let me know if you have another question.');};
   }catch(e){bot('⚠️ '+esc(e.message));}
   finally{busy=false;}
 }
