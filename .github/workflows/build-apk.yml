@@ -31,6 +31,13 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Copy MediaPipe files
+        run: |
+          mkdir -p www/mediapipe
+          cp node_modules/@mediapipe/tasks-genai/genai_bundle.mjs www/mediapipe/
+          cp -r node_modules/@mediapipe/tasks-genai/wasm www/mediapipe/
+          ls -R www/mediapipe
+
       - name: Add Android platform
         run: npx cap add android
 
@@ -51,4 +58,3 @@ jobs:
         with:
           name: NEET-PYQ-apk
           path: android/app/build/outputs/apk/debug/app-debug.apk
-          
