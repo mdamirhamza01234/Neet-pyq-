@@ -20,6 +20,14 @@ jobs:
           distribution: temurin
           java-version: 17
 
+      - name: Arrange files
+        run: |
+          mkdir -p assets www/mocks
+          cp -n icon-*.png assets/ 2>/dev/null || true
+          cp -n index.html www/index.html 2>/dev/null || true
+          cp -n mock*.html www/mocks/ 2>/dev/null || true
+          ls -R www assets
+
       - name: Install dependencies
         run: npm install
 
