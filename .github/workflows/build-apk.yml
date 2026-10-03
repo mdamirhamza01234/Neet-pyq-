@@ -18,7 +18,7 @@ jobs:
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: 17
+          java-version: 21
 
       - name: Arrange files
         run: |
@@ -31,15 +31,38 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Copy MediaPipe files
-        run: |
-          mkdir -p www/mediapipe
-          cp node_modules/@mediapipe/tasks-genai/genai_bundle.mjs www/mediapipe/
-          cp -r node_modules/@mediapipe/tasks-genai/wasm www/mediapipe/
-          ls -R www/mediapipe
-
       - name: Add Android platform
         run: npx cap add android
+
+      - name: Add Gemma native plugin
+        run: |
+          APPID=$(node -p "require('./capacitor.config.json').appId")
+          DIR=android/app/src/main/java/$(echo "$APPID" | tr . /)
+          mkdir -p "$DIR"
+          sed "s/PACKAGE_PLACEHOLDER/$APPID/" native/GemmaPlugin.java > "$DIR/GemmaPlugin.java"
+          cat > "$DIR/MainActivity.java" <<JAVA
+          package $APPID;
+
+          import android.os.Bundle;
+          import com.getcapacitor.BridgeActivity;
+
+          public class MainActivity extends BridgeActivity {
+              @Override
+              public void onCreate(Bundle savedInstanceState) {
+                  registerPlugin(GemmaPlugin.class);
+                  super.onCreate(savedInstanceState);
+              }
+          }
+          JAVA
+          sed -i "0,/^dependencies {/s//dependencies {\n    implementation 'com.google.mediapipe:tasks-genai:0.10.24'/" android/app/build.gradle
+          sed -i 's/minSdkVersion = [0-9]*/minSdkVersion = 24/' android/variables.gradle
+          sed -i 's/<application/<application android:largeHeap="true"/' android/app/src/main/AndroidManifest.xml
+          grep -n "mediapipe" android/app/build.gradle
+          grep -n "minSdk" android/variables.gradle
+          cat "$DIR/MainActivity.java"
+
+      - name: Upgrade Gradle for Java 21
+        run: sed -i 's#gradle-8.2.1-all.zip#gradle-8.7-all.zip#' android/gradle/wrapper/gradle-wrapper.properties
 
       - name: Generate app icons
         run: npx capacitor-assets generate --android
