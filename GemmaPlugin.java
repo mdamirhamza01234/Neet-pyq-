@@ -1,4 +1,4 @@
-package PACKAGE_PLACEHOLDER;
+package com.neet.pyq;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -128,4 +128,4 @@ public class GemmaPlugin extends Plugin {
             }
         });
     }
-  }
+            }
