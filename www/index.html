@@ -136,6 +136,21 @@ header{padding:0 46px}
 .cbS{font-size:12px;color:#9fb3c0;margin-top:6px;min-height:14px;word-break:break-word}
 .cbHr{border:0;border-top:1px solid #2c3e50;margin:14px 0}
 </style>
+<style>
+#cbPanel{max-width:none;left:0;top:0;height:100%;height:100dvh;border:0;border-radius:0}
+#cbHead{border-radius:0;padding-top:max(12px,env(safe-area-inset-top));gap:6px}
+#cbHead .cbTitle{flex:1;min-width:0}
+#cbHead #cbX{margin:0 2px 0 -4px}
+#cbRow{align-items:center;gap:8px}
+#cbPlus{flex:0 0 42px;width:42px;height:42px;border-radius:50%;border:0;background:#26343f;color:#9ec5ff;display:flex;align-items:center;justify-content:center}
+#cbPlus:active{background:#34475a}
+#cbPrev{display:none;padding:8px 12px 0;position:relative}
+#cbPrev.on{display:block}
+#cbPrev .pv{position:relative;display:inline-block}
+#cbPrev img{max-height:90px;max-width:140px;border-radius:10px;border:1px solid #3a4d5c;display:block}
+#cbPrev button{position:absolute;top:-8px;right:-8px;width:24px;height:24px;border-radius:50%;border:0;background:#c0392b;color:#fff;font-size:13px;line-height:24px;padding:0}
+.cbm img.up{max-width:100%;max-height:220px;border-radius:10px;display:block;margin-bottom:6px}
+</style>
 </head>
 <body>
 
@@ -166,8 +181,8 @@ header{padding:0 46px}
 
 
 <button id="cbFab" title="NEET Assistant" aria-label="Open NEET Assistant"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L3 21l1.9-5.6A8 8 0 1 1 21 12z"/><path d="M8.5 11h7M8.5 14.5h4"/></svg></button>
-<div id="cbPanel"><div id="cbHead"><div class="cbTitle"><div class="cbAv"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/></svg></div><div><div class="cbT1">NEET Assistant</div><div class="cbT2">PYQ doubts &amp; solutions</div></div></div><span class="cbAct"><button id="cbKey" title="Settings" aria-label="Settings"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button><button id="cbX" title="Close" aria-label="Close"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button></span></div>
-<div id="cbSt"></div><input type="file" id="cbFile" accept=".task,.bin" hidden><div id="cbMsgs"></div><div id="cbRow"><input id="cbIn" placeholder="Ask a question, e.g. Re-NEET 2026 Animal Kingdom"><button id="cbSend" aria-label="Send"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg></button></div><div id="cbSet"><div class="cbCard"><div class="cbCH"><b>⚙️ Settings</b><button id="cbSetX" aria-label="Close">✕</button></div>
+<div id="cbPanel"><div id="cbHead"><button id="cbX" title="Back" aria-label="Back"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg></button><div class="cbTitle"><div class="cbAv"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/></svg></div><div><div class="cbT1">NEET Assistant</div><div class="cbT2">PYQ doubts &amp; solutions</div></div></div><span class="cbAct"><button id="cbKey" title="Settings" aria-label="Settings"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button></span></div>
+<div id="cbSt"></div><input type="file" id="cbFile" accept=".task,.bin" hidden><div id="cbMsgs"></div><div id="cbPrev"></div><input type="file" id="cbImg" accept="image/*" hidden><div id="cbRow"><button id="cbPlus" aria-label="Photo jodo" type="button"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></button><input id="cbIn" placeholder="Ask a question, e.g. Re-NEET 2026 Animal Kingdom"><button id="cbSend" aria-label="Send"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg></button></div><div id="cbSet"><div class="cbCard"><div class="cbCH"><b>⚙️ Settings</b><button id="cbSetX" aria-label="Close">✕</button></div>
 <label class="cbL">Gemini API key</label>
 <input id="cbKeyIn" type="password" autocomplete="off" spellcheck="false" placeholder="AIza... ya AQ. ... key yahan paste karo">
 <div class="cbRw"><button id="cbKeySave" class="cbB">Key save karo</button><button id="cbKeyClr" class="cbB cbG">Hatao</button></div>
@@ -304,6 +319,7 @@ let needKey=false, busy=false;
 const cbM=document.getElementById('cbMsgs'), cbIn=document.getElementById('cbIn');
 const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/\n/g,'<br>');
 function msg(cls,html){const d=document.createElement('div');d.className='cbm '+cls;d.innerHTML=html;cbM.appendChild(d);cbM.scrollTop=cbM.scrollHeight;return d;}
+const fmtAI=t=>esc(String(t).replace(/\r/g,'')).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/(^|<br>)\s*[*\-•]\s+/g,'$1• ').replace(/(^|<br>)\s*#{1,6}\s*/g,'$1').replace(/\*+/g,'').replace(/`/g,'');
 const bot=h=>msg('bot',h), usr=t=>msg('usr',esc(t));
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 
@@ -326,13 +342,13 @@ async function getModels(k){
   if(last&&/^gemini-[3-9]/.test(last)&&list.includes(last)) list=[last,...list.filter(x=>x!==last)];
   return MODELS=list;
 }
-async function gem(prompt,json){
+async function gem(prompt,json,img){
   const k=localStorage.getItem('cbKey'); if(!k) throw new Error('API key nahi hai');
   const ms=await getModels(k); let last='';
   for(const m of ms){
     for(let t=0;t<2;t++){
       try{
-        const r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${m}:generateContent`,{method:'POST',headers:{'Content-Type':'application/json','x-goog-api-key':k},body:JSON.stringify({contents:[{parts:[{text:prompt}]}],generationConfig:json?{responseMimeType:'application/json'}:{}})});
+        const r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${m}:generateContent`,{method:'POST',headers:{'Content-Type':'application/json','x-goog-api-key':k},body:JSON.stringify({contents:[{parts:img?[{inlineData:{mimeType:img.mime,data:img.data}},{text:prompt}]:[{text:prompt}]}],generationConfig:json?{responseMimeType:'application/json'}:{}})});
         const d=await r.json().catch(()=>({}));
         if(!r.ok){
           const em=d.error?.message||('HTTP '+r.status);
@@ -365,7 +381,7 @@ Neeche sawalon ki list hai (format: id|subject|text). Jo sawal user ke topic/cha
 JSON do: {"ids":["0-12"],"chat":""}
 ${list}`,true));
     const hit=(p.ids||[]).map(id=>QS.find(q=>qk(q)===id)).filter(Boolean).slice(0,8);
-    if(!hit.length){st.innerHTML=esc(p.chat||'Is topic ka koi sawal in papers mein nahi mila.');return;}
+    if(!hit.length){st.innerHTML=fmtAI(p.chat||'Is topic ka koi sawal in papers mein nahi mila.');return;}
     st.innerHTML=`<b>${hit.length} sawal mile:</b> <small>(model: ${usedModel})</small>`;
     hit.forEach(q=>bot(`<b>${PN[q.p]}</b> · Q${q.n} · <small>${q.subj}</small><div class="qt">${esc(q.txt)}</div>`));
     const b=bot('Kya aap inka answer jaanna chahte hain?<div class="yn"><button>✅ Yes</button><button>❌ No</button></div>');
@@ -382,7 +398,7 @@ async function reveal(hit){
   try{
     const items=hit.map(q=>`Q${q.n} (${PN[q.p]}):\n${q.txt}\nSahi option: ${q.ans}\n${q.sol.slice(0,600)}`).join('\n\n');
     const ex=await gem(`Har sawal ke liye 2-3 line ka simple Hinglish explanation do, format "Q<no>: ...". Diya gaya sahi option badalna mat. Sawal ka text OCR se hai, kuch symbol/diagram galat ya missing ho sakte hain.\n\n${items}`);
-    st.innerHTML=lines.join('<br>')+'<hr>'+esc(ex);
+    st.innerHTML=lines.join('<br>')+'<hr>'+fmtAI(ex);
   }catch(e){st.innerHTML=lines.join('<br>')+'<br><small>Explanation nahi aa saka: '+esc(e.message)+'</small>';}
   cbM.scrollTop=cbM.scrollHeight;
 }
@@ -397,7 +413,9 @@ document.getElementById('cbKey').onclick=()=>{keyIn.value='';keyInfo();if(typeof
 document.getElementById('cbSetX').onclick=()=>setBox.classList.remove('on');
 document.getElementById('cbKeySave').onclick=()=>{const k=keyIn.value.replace(/\s/g,'');if(!KEYRX.test(k)){keySt.textContent='⚠️ Key galat lag rahi hai. Ye AIza ya AQ. se shuru hoti hai.';return;}localStorage.setItem('cbKey',k);localStorage.removeItem('cbModel');MODELS=null;needKey=false;keyIn.value='';keyInfo();bot('API key save ho gayi. Ab sawal pooch sakte ho.');};
 document.getElementById('cbKeyClr').onclick=()=>{localStorage.removeItem('cbKey');localStorage.removeItem('cbModel');MODELS=null;keyInfo();};
-const go=()=>{const t=cbIn.value.trim();if(t){cbIn.value='';ask(t);}};
+const go=()=>{const t=cbIn.value.trim();if(pendImg){const im=pendImg;pendImg=null;showPrev();cbIn.value='';askImg(t,im);return;}if(t){cbIn.value='';ask(t);}};
+document.getElementById('cbPlus').onclick=()=>document.getElementById('cbImg').click();
+document.getElementById('cbImg').onchange=async e=>{const f=e.target.files[0];e.target.value='';if(!f)return;try{pendImg=await loadImg(f);showPrev();}catch(er){bot('⚠️ '+esc(er.message));}};
 document.getElementById('cbSend').onclick=go; cbIn.addEventListener('keydown',e=>{if(e.key==='Enter')go();});
 </script>
 <script>
@@ -447,9 +465,9 @@ async function gma(prompt,d){
     d.innerHTML='⏳ Soch raha hoon…';
     const r=await NAT().generate({prompt:`<start_of_turn>user\n${prompt}<end_of_turn>\n<start_of_turn>model\n`});
     t=String((r&&r.text)||'').replace(/<end_of_turn>[\s\S]*$/,'').trim();
-    d.innerHTML=esc(t);cbM.scrollTop=cbM.scrollHeight;return t;
+    d.innerHTML=fmtAI(t);cbM.scrollTop=cbM.scrollHeight;return t;
   }
-  await llm.generateResponse(`<start_of_turn>user\n${prompt}<end_of_turn>\n<start_of_turn>model\n`,(x)=>{t+=x;d.innerHTML=esc(t);cbM.scrollTop=cbM.scrollHeight;});
+  await llm.generateResponse(`<start_of_turn>user\n${prompt}<end_of_turn>\n<start_of_turn>model\n`,(x)=>{t+=x;d.innerHTML=fmtAI(t);cbM.scrollTop=cbM.scrollHeight;});
   return t;
 }
 
@@ -459,8 +477,18 @@ const tok=s=>(String(s).toLowerCase().match(/[\p{L}\p{N}]+/gu)||[]).filter(w=>w.
 const DOC=QS.map(q=>new Set(tok(q.subj+' '+q.txt))), DF={};
 DOC.forEach(d=>d.forEach(w=>DF[w]=(DF[w]||0)+1));
 const idf=w=>Math.log(1+QS.length/(DF[w]||0.5));
+const TOPICS=[
+ [/animal\s*kingdom|jantu\s*jagat|prani\s*jagat/i,'phylum chordata arthropoda mollusca porifera cnidaria annelida echinodermata aves mammalia reptilia amphibia pisces vertebrate invertebrate coelom notochord sponge cockroach frog earthworm metamerism coelenterata aschelminthes platyhelminthes hemichordata cyclostomata'],
+ [/plant\s*kingdom|paudh/i,'algae bryophyta pteridophyta gymnosperm gymnosperms angiosperm fern moss thallus chlorophyceae phaeophyceae rhodophyceae liverwort bryophytes pteridophytes'],
+ [/cell\s*division|mitosis|meiosis/i,'mitosis meiosis prophase metaphase anaphase telophase interphase chromosome crossing synapsis cytokinesis spindle'],
+ [/genetics|mendel|inheritance/i,'mendel allele genotype phenotype dominant recessive heterozygous homozygous dihybrid monohybrid linkage cross'],
+ [/photosynthesis|prakash\s*sanshlesan/i,'photosynthesis chlorophyll calvin rubisco photosystem thylakoid stroma light'],
+ [/human\s*heart|circulation|blood/i,'heart cardiac atrium ventricle blood artery vein ecg systole diastole circulation']
+];
 function search(text){
-  const qt=[...new Set(tok(text))]; if(!qt.length) return [];
+  let qt=[...new Set(tok(text))], topical=false;
+  for(const [rx,ex] of TOPICS){ if(rx.test(text)){ qt=[...new Set(tok(ex))]; topical=true; break; } }
+  if(!qt.length) return [];
   const yrs=text.match(/20\d\d/g)||[], re=/re-?neet/i.test(text), r=[];
   QS.forEach((q,i)=>{
     if(yrs.length&&!yrs.some(y=>PN[q.p].includes(y))) return;
@@ -469,16 +497,28 @@ function search(text){
     if(m) r.push({q,s,m});
   });
   r.sort((a,b)=>b.s-a.s);
-  const need=qt.length>1?2:1;
-  return r.filter(x=>x.m>=need&&x.s>=r[0].s*0.6).slice(0,8).map(x=>x.q);
+  const need=topical?1:(qt.length>1?2:1);
+  if(!r.length) return [];
+  return r.filter(x=>x.m>=need&&x.s>=r[0].s*(topical?0.25:0.6)).slice(0,topical?10:8).map(x=>x.q);
 }
 
+function numLookup(text){
+  const m=text.match(/\b(\d{1,3})\s*(?:st|nd|rd|th)?\s*(?:no\.?|number|wala)?\s*(?:question|sawal|prashn)\b|\bq\s?(\d{1,3})\b|(?:question|sawal|prashn)\s*(?:no\.?|number)?\s*(\d{1,3})\b/i);
+  if(!m) return [];
+  const n=+(m[1]||m[2]||m[3]); const yrs=text.match(/20\d\d/g)||[], re=/re-?neet/i.test(text);
+  if(!yrs.length) return [];
+  let ps=PN.map((p,i)=>i).filter(i=>yrs.some(y=>PN[i].includes(y)));
+  if(re) ps=ps.filter(i=>/re-neet/i.test(PN[i])); else if(ps.length>1) ps=ps.filter(i=>!/re-neet/i.test(PN[i]));
+  return QS.filter(q=>ps.includes(q.p)&&q.n===n);
+}
+const APPHELP=/\b(kaise|button|start|close|settings|download|install|offline|online|chatbot|app)\b/i;
 async function localAsk(text){
   usr(text); busy=true;
   try{
-    const hit=search(text);
+    let hit=numLookup(text); if(!hit.length) hit=search(text);
     if(!hit.length){
-      if(!llm){bot('Please load the offline model using the download icon above to get offline answers.');return;}
+      if(!APPHELP.test(text)){bot('Is topic ka koi sawal in papers mein nahi mila. 🔎 Topic ka naam alag tarah se likho (jaise <i>Chordata, phylum, notochord</i>), ya paper aur sawal number likho (jaise <i>Re-NEET 2026 Q12</i>). Internet ho to ⚙️ mein Gemini key daalke bhi pooch sakte ho.');return;}
+      if(!llm){bot('Offline model abhi add nahi hai. ⚙️ Settings mein .task file upload karo.');return;}
       const d=bot('…');
       await gma(`Tum NEET PYQ app ke offline assistant ho. Sirf neeche di gayi app ki jankari se Hinglish mein chhota jawab do. Jankari na ho to bolo "Ye mujhe app mein nahi mila".\n\nAPP: ${APPINFO}\n\nUser: ${text}`,d);
       return;
@@ -512,19 +552,75 @@ async function outAsk(text){
   busy=true; const st=bot('Gemini se pooch raha hoon…');
   try{
     const a=await gem('Tum ek helpful assistant ho. Simple Hinglish mein, chhota aur sahi jawab do.\n\nSawal: '+text);
-    st.innerHTML=esc(a)+`<br><small>(Gemini: ${usedModel})</small>`;
+    st.innerHTML=fmtAI(a)+`<br><small>(Gemini: ${usedModel})</small>`;
+  }catch(e){st.innerHTML='⚠️ '+esc(e.message);}
+  finally{busy=false;}
+}
+const SMALLRX=/^\s*(hi+|hello+|hey+|hlo+|helo+|namaste|salam|assalam\S*|thanks?|thank you|thnx|thx|shukriya|dhanyavaad|dhanyavad|ok(ay)?|bye|good\s*(morning|night|evening|afternoon)|kya\s*(haal|hal)\b.*|kaise\s*ho.*|kese\s*ho.*|how are you.*|who are you|tum kaun.*|aap kaun.*|tera naam.*|tumhara naam.*|aapka naam.*|what'?s up)\s*[!.?🙂😊]*\s*$/i;
+const MATHONLY=/^[\s\d+\-*\/x×÷().%^=?,]+$/i, MATHWORD=/\b(plus|minus|jod|jodo|ghata|ghatao|guna|gunaa|bhag|bhaag|kitna|kitne|sum|multiply|divide|percent|square|root|add|subtract|times|equals?)\b/i;
+function isSmall(t){
+  if(SMALLRX.test(t)) return true;
+  if(t.length<=80&&/\d/.test(t)&&/[+\-*\/x×÷^%]/.test(t)&&MATHONLY.test(t.replace(/\b(what is|whats|calculate|solve|find|of|kitna|hota|hai|kya|ka)\b/gi,''))) return true;
+  if(t.length<=90&&/\d/.test(t)&&MATHWORD.test(t)&&!APPRX.test(t)) return true;
+  return false;
+}
+function cannedSmall(t){
+  if(/thank|thnx|thx|shukriya|dhanyavad|dhanyavaad/i.test(t)) return 'Aapka swagat hai! 😊 Aur kuch poochna ho to batao.';
+  if(/haal|\bhal\b|kaise ho|kese ho|how are you|what'?s up/i.test(t)) return 'Main badhiya hoon! 😊 Aap batao, padhai kaisi chal rahi hai?';
+  if(/bye/i.test(t)) return 'Bye! Padhai karte raho 📚';
+  if(/who are you|kaun|naam/i.test(t)) return 'Main NEET Assistant hoon. PYQ ke sawal dhundhne aur doubts mein madad karta hoon.';
+  return 'Namaste! 👋 Mujhse Re-NEET 2026, Re-NEET 2024 ya NEET 2024 ke sawal poocho, jaise: <i>Re-NEET 2026 mein Animal Kingdom se kaun se sawal aaye?</i> ya <i>Re-NEET 2026 Q12</i>';
+}
+async function smallAsk(text,note){
+  usr(text); busy=true; const d=bot('…');
+  try{
+    await gma(`Tum ek friendly assistant ho. Hinglish mein bahut chhota jawab do (1-3 line). Agar maths ho to seedha calculate karke answer batao.\n\nUser: ${text}`,d);
+    if(note) d.insertAdjacentHTML('beforeend','<br><small>'+note+'</small>');
+  }catch(e){d.innerHTML='⚠️ '+esc(e.message||e);}
+  finally{busy=false;}
+}
+let pendImg=null;
+function showPrev(){const p=document.getElementById('cbPrev');if(!pendImg){p.className='';p.innerHTML='';return;}p.className='on';p.innerHTML='<span class="pv"><img src="'+pendImg.url+'"><button type="button" id="cbPrevX" aria-label="Hatao">✕</button></span>';document.getElementById('cbPrevX').onclick=()=>{pendImg=null;showPrev();};}
+function loadImg(file){
+  return new Promise((res,rej)=>{
+    const fr=new FileReader();
+    fr.onerror=()=>rej(new Error('Photo padh nahi paya'));
+    fr.onload=()=>{const im=new Image();im.onerror=()=>rej(new Error('Photo khul nahi payi'));im.onload=()=>{
+      const M=1400,sc=Math.min(1,M/Math.max(im.width,im.height)),c=document.createElement('canvas');
+      c.width=Math.round(im.width*sc);c.height=Math.round(im.height*sc);c.getContext('2d').drawImage(im,0,0,c.width,c.height);
+      const url=c.toDataURL('image/jpeg',0.85);res({mime:'image/jpeg',data:url.split(',')[1],url});};im.src=fr.result;};
+    fr.readAsDataURL(file);
+  });
+}
+async function askImg(text,img){
+  if(busy) return;
+  usr('').innerHTML='<img class="up" src="'+img.url+'">'+(text?esc(text):'');
+  const k=localStorage.getItem('cbKey');
+  if(!navigator.onLine) return void bot('Photo se sawal puchne ke liye internet chahiye 🌐');
+  if(!k) return void bot('Photo ke liye Gemini API key chahiye. ⚙️ dabake key daalo.');
+  busy=true; const st=bot('Photo dekh raha hoon…');
+  try{
+    const a=await gem('Tum ek NEET/JEE ke experienced teacher ho. Photo mein jo sawal ya doubt hai use dhyan se padho aur step-by-step solve karo. Simple Hinglish mein samjhao, zaroori formula likho, aur aakhir mein final answer saaf likho. Agar photo saaf nahi hai to batao.'+(text?'\n\nUser ka message: '+text:''),false,img);
+    st.innerHTML=fmtAI(a)+`<br><small>(Gemini: ${usedModel})</small>`;
   }catch(e){st.innerHTML='⚠️ '+esc(e.message);}
   finally{busy=false;}
 }
 function ask(text){
   if(busy) return;
-  if(needKey) return askG(text);
   const k=localStorage.getItem('cbKey'), on=navigator.onLine;
+  if(!needKey&&isSmall(text)){
+    if(llm) return smallAsk(text);
+    if(SMALLRX.test(text)){usr(text);return void bot(cannedSmall(text));}
+    if(on&&k){usr(text);return outAsk(text);}
+    usr(text);return void bot('Maths/chhote sawal ke liye ⚙️ Settings mein offline Gemma model add karo, ya internet ke saath Gemini key daalo.');
+  }
+  if(needKey) return askG(text);
   if(!APPRX.test(text)){
+    if(on&&k){usr(text);return outAsk(text);}
+    if(llm) return smallAsk(text,'(Offline Gemma ka jawab — galat ho sakta hai. Pakka jawab ke liye internet par Gemini se pucho.)');
     usr(text);
-    if(!on) return void bot('Ye app ke bahar ka sawal hai — iske liye internet chahiye 🌐');
-    if(!k) return void bot('Is sawal ke liye Gemini API key chahiye. ⚙️ dabake key daalo.');
-    return outAsk(text);
+    if(!on) return void bot('Ye app ke bahar ka sawal hai — iske liye internet chahiye 🌐 (ya ⚙️ mein offline Gemma add karo).');
+    return void bot('Is sawal ke liye Gemini API key chahiye. ⚙️ dabake key daalo.');
   }
   if(!llm&&on&&k) return askG(text);
   return localAsk(text);
