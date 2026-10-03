@@ -39,7 +39,9 @@ jobs:
           APPID=$(node -p "require('./capacitor.config.json').appId")
           DIR=android/app/src/main/java/$(echo "$APPID" | tr . /)
           mkdir -p "$DIR"
-          sed "s/PACKAGE_PLACEHOLDER/$APPID/" native/GemmaPlugin.java > "$DIR/GemmaPlugin.java"
+          SRC=GemmaPlugin.java
+          [ -f native/GemmaPlugin.java ] && SRC=native/GemmaPlugin.java
+          sed -E "s/^package .*;/package $APPID;/" "$SRC" > "$DIR/GemmaPlugin.java"
           cat > "$DIR/MainActivity.java" <<JAVA
           package $APPID;
 
@@ -59,7 +61,7 @@ jobs:
           sed -i 's/<application/<application android:largeHeap="true"/' android/app/src/main/AndroidManifest.xml
           grep -n "mediapipe" android/app/build.gradle
           grep -n "minSdk" android/variables.gradle
-          cat "$DIR/MainActivity.java"
+          head -3 "$DIR/GemmaPlugin.java"
 
       - name: Upgrade Gradle for Java 21
         run: sed -i 's#gradle-8.2.1-all.zip#gradle-8.7-all.zip#' android/gradle/wrapper/gradle-wrapper.properties
