@@ -58,9 +58,11 @@ jobs:
           JAVA
           sed -i "0,/^dependencies {/s//dependencies {\n    implementation 'com.google.mediapipe:tasks-genai:0.10.24'/" android/app/build.gradle
           sed -i 's/minSdkVersion = [0-9]*/minSdkVersion = 24/' android/variables.gradle
+          sed -i 's#<application#<uses-permission android:name="android.permission.CAMERA" />\n    <application#' android/app/src/main/AndroidManifest.xml
           sed -i 's/<application/<application android:largeHeap="true"/' android/app/src/main/AndroidManifest.xml
           grep -n "mediapipe" android/app/build.gradle
           grep -n "minSdk" android/variables.gradle
+          grep -n "CAMERA\|largeHeap" android/app/src/main/AndroidManifest.xml
           head -3 "$DIR/GemmaPlugin.java"
 
       - name: Upgrade Gradle for Java 21
