@@ -121,6 +121,21 @@ header{padding:0 46px}
 #cbIn::placeholder{color:#7f93a3}
 #cbSend{width:42px;height:42px;padding:0;border-radius:50%;background:#2e86de;display:flex;align-items:center;justify-content:center}
 </style>
+<style>
+#cbSet{display:none;position:absolute;inset:0;background:rgba(0,0,0,.6);z-index:5;align-items:center;justify-content:center;padding:16px;border-radius:inherit}
+#cbSet.on{display:flex}
+.cbCard{width:100%;max-height:100%;overflow:auto;background:#1a232b;border:1px solid #2c3e50;border-radius:14px;padding:14px;box-sizing:border-box}
+.cbCH{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-size:16px}
+.cbCH button{background:none;border:0;color:#fff;font-size:18px;padding:4px 8px}
+.cbL{display:block;font-size:13px;color:#90caf9;margin:6px 0 4px;font-weight:600}
+#cbKeyIn{width:100%;box-sizing:border-box;padding:11px;border-radius:9px;border:1px solid #3a4d5c;background:#0f171d;color:#fff;font-size:14px}
+.cbRw{display:flex;gap:8px;margin-top:8px}
+.cbB{flex:1;padding:11px;border:0;border-radius:9px;background:#2e86de;color:#fff;font-size:14px;font-weight:600}
+.cbB.cbG{background:#33414d}
+#cbGemPick{width:100%}
+.cbS{font-size:12px;color:#9fb3c0;margin-top:6px;min-height:14px;word-break:break-word}
+.cbHr{border:0;border-top:1px solid #2c3e50;margin:14px 0}
+</style>
 </head>
 <body>
 
@@ -151,8 +166,19 @@ header{padding:0 46px}
 
 
 <button id="cbFab" title="NEET Assistant" aria-label="Open NEET Assistant"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L3 21l1.9-5.6A8 8 0 1 1 21 12z"/><path d="M8.5 11h7M8.5 14.5h4"/></svg></button>
-<div id="cbPanel"><div id="cbHead"><div class="cbTitle"><div class="cbAv"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/></svg></div><div><div class="cbT1">NEET Assistant</div><div class="cbT2">PYQ doubts &amp; solutions</div></div></div><span class="cbAct"><button id="cbMod" title="Load offline model" aria-label="Load offline model"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg></button><button id="cbKey" title="Settings" aria-label="Settings"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button><button id="cbX" title="Close" aria-label="Close"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button></span></div>
-<div id="cbSt"></div><input type="file" id="cbFile" accept=".task,.bin" hidden><div id="cbMsgs"></div><div id="cbRow"><input id="cbIn" placeholder="Ask a question, e.g. Re-NEET 2026 Animal Kingdom"><button id="cbSend" aria-label="Send"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg></button></div></div>
+<div id="cbPanel"><div id="cbHead"><div class="cbTitle"><div class="cbAv"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/></svg></div><div><div class="cbT1">NEET Assistant</div><div class="cbT2">PYQ doubts &amp; solutions</div></div></div><span class="cbAct"><button id="cbKey" title="Settings" aria-label="Settings"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button><button id="cbX" title="Close" aria-label="Close"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button></span></div>
+<div id="cbSt"></div><input type="file" id="cbFile" accept=".task,.bin" hidden><div id="cbMsgs"></div><div id="cbRow"><input id="cbIn" placeholder="Ask a question, e.g. Re-NEET 2026 Animal Kingdom"><button id="cbSend" aria-label="Send"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg></button></div><div id="cbSet"><div class="cbCard"><div class="cbCH"><b>⚙️ Settings</b><button id="cbSetX" aria-label="Close">✕</button></div>
+<label class="cbL">Gemini API key</label>
+<input id="cbKeyIn" type="password" autocomplete="off" spellcheck="false" placeholder="AIza... ya AQ. ... key yahan paste karo">
+<div class="cbRw"><button id="cbKeySave" class="cbB">Key save karo</button><button id="cbKeyClr" class="cbB cbG">Hatao</button></div>
+<div id="cbKeySt" class="cbS"></div>
+<hr class="cbHr">
+<label class="cbL">Offline AI (Gemma 3 1B)</label>
+<div class="cbS" style="margin-bottom:6px">gemma3-1b-it-int4.task file ek baar chuno. Ye internet ke bina chalega.</div>
+<button id="cbGemPick" class="cbB">📦 .task file upload karo</button>
+<div id="cbGemSt" class="cbS"></div>
+<button id="cbGemDel" class="cbB cbG" style="margin-top:8px">Model hatao</button>
+</div></div></div>
 
 <!-- Mock test HTML data (base64), taaki sab kuch isi file ke andar rahe, koi 404 na ho -->
 
@@ -364,7 +390,13 @@ async function reveal(hit){
 const panel=document.getElementById('cbPanel');
 document.getElementById('cbFab').onclick=()=>{panel.classList.add('on');if(!cbM.children.length)bot(localStorage.getItem('cbKey')?'Hello! I can help you find and understand questions from Re-NEET 2026, Re-NEET 2024 and NEET 2024. Try: <i>Which question on Animal Kingdom came in Re-NEET 2026?</i>':'Hello! To get started, open <b>Settings</b> (gear icon above) and add your Gemini API key (free at aistudio.google.com/apikey).');};
 document.getElementById('cbX').onclick=()=>panel.classList.remove('on');
-document.getElementById('cbKey').onclick=()=>{needKey=true;bot('Paste your new Gemini API key and send it.');};
+const setBox=document.getElementById('cbSet'),keyIn=document.getElementById('cbKeyIn'),keySt=document.getElementById('cbKeySt');
+const KEYRX=/^(AIza|AQ\.)[\w.-]{25,}$/;
+function keyInfo(){const k=localStorage.getItem('cbKey');keySt.textContent=k?'✅ Key saved ('+k.slice(0,4)+'…'+k.slice(-4)+')':'Abhi koi key save nahi hai. Free key: aistudio.google.com/apikey';}
+document.getElementById('cbKey').onclick=()=>{keyIn.value='';keyInfo();if(typeof natRefresh==='function')natRefresh();setBox.classList.add('on');};
+document.getElementById('cbSetX').onclick=()=>setBox.classList.remove('on');
+document.getElementById('cbKeySave').onclick=()=>{const k=keyIn.value.replace(/\s/g,'');if(!KEYRX.test(k)){keySt.textContent='⚠️ Key galat lag rahi hai. Ye AIza ya AQ. se shuru hoti hai.';return;}localStorage.setItem('cbKey',k);localStorage.removeItem('cbModel');MODELS=null;needKey=false;keyIn.value='';keyInfo();bot('API key save ho gayi. Ab sawal pooch sakte ho.');};
+document.getElementById('cbKeyClr').onclick=()=>{localStorage.removeItem('cbKey');localStorage.removeItem('cbModel');MODELS=null;keyInfo();};
 const go=()=>{const t=cbIn.value.trim();if(t){cbIn.value='';ask(t);}};
 document.getElementById('cbSend').onclick=go; cbIn.addEventListener('keydown',e=>{if(e.key==='Enter')go();});
 </script>
@@ -379,8 +411,12 @@ try{const bk=localStorage.getItem('cbKey');if(bk&&!/^(AIza|AQ\.)[\w.-]{25,}$/.te
 
 let llm=null, loadingLLM=false;
 const cbSt=document.getElementById('cbSt'), cbFile=document.getElementById('cbFile');
-const setSt=t=>cbSt.textContent=t;
+const setSt=t=>{cbSt.textContent=t;const g=document.getElementById('cbGemSt');if(g)g.textContent=t;};
 setSt('Offline AI: model not loaded');
+const NAT=()=>{const C=window.Capacitor;if(!(C&&C.isNativePlatform&&C.isNativePlatform()))return null;return (C.Plugins&&C.Plugins.Gemma)||(C.registerPlugin&&C.registerPlugin('Gemma'))||null;};
+async function natRefresh(){const P=NAT();if(!P)return;try{const r=await P.status();llm=r.installed?{native:true}:null;setSt(r.installed?'✅ Offline AI ready — Gemma 3 1B ('+r.sizeMB+' MB)':'Offline AI: model add nahi hua — 📦 dabao');}catch(e){llm=null;setSt('⚠️ Plugin nahi mila: '+(e.message||e));}}
+async function natPick(){const P=NAT();setSt('⏳ Model copy ho raha hai… 1-2 min ruko');try{const r=await P.pickModel();setSt('✅ Model add hua ('+r.sizeMB+' MB)');}catch(e){setSt('⚠️ '+(e.message||e));}natRefresh();}
+
 
 const APPINFO='App ka naam: NEET PYQ + Mock Test App. Tests: '+tests.map(t=>t.title).join('; ')+'. Har test ke 3 button hain: Question Paper (Google Drive app mein khulta hai), Answer Key (Drive app mein), Start Mock Test (app ke andar fullscreen mein khulta hai, upar Close button se band hota hai). Chatbot (chat button, neeche right) in papers ke sawal topic se dhundta hai: '+PN.join('; ')+'. Sawal milne par Yes dabao to sahi answer aur explanation milta hai. NEET 2026 (3 May) aur NEET 2025 ke chatbot-sawal available nahi hain. 📦 se Gemma offline model load hota hai, ⚙️ se Gemini API key.';
 
@@ -394,17 +430,25 @@ async function loadLLM(f){
     let m,g;
     try{m=await import('./mediapipe/genai_bundle.mjs');g=await m.FilesetResolver.forGenAiTasks('./mediapipe/wasm');}
     catch(e1){m=await import(MP_JS);g=await m.FilesetResolver.forGenAiTasks(MP_WASM);}
-    llm=await m.LlmInference.createFromOptions(g,{baseOptions:{modelAssetBuffer:f.stream().getReader()},maxTokens:2048,topK:40,temperature:0.6,randomSeed:7});
+    llm=await m.LlmInference.createFromOptions(g,{baseOptions:{modelAssetBuffer:f.stream().getReader()},maxTokens:640,topK:40,temperature:0.6,randomSeed:7});
     setSt('✅ Offline AI ready — Gemma 3 1B');
   }catch(e){llm=null;setSt('⚠️ Model load fail: '+e.message);}
   loadingLLM=false;
 }
-document.getElementById('cbMod').onclick=()=>cbFile.click();
 cbFile.onchange=async()=>{const f=cbFile.files[0];if(!f)return;setSt('💾 Model save ho raha hai…');const ok=await saveModel(f);await loadLLM(f);if(llm&&!ok)setSt('✅ Ready, par save nahi hua — agli baar dobara select karna padega');};
-document.getElementById('cbFab').addEventListener('click',async()=>{if(llm||loadingLLM)return;const f=await storedModel();if(f)loadLLM(f);});
+document.getElementById('cbFab').addEventListener('click',async()=>{if(NAT()){natRefresh();return;}if(llm||loadingLLM)return;const f=await storedModel();if(f)loadLLM(f);});
+document.getElementById('cbGemPick').onclick=()=>{if(NAT())natPick();else cbFile.click();};
+document.getElementById('cbGemDel').onclick=async()=>{try{const P=NAT();if(P)await P.removeModel();else{await (await opfs()).removeEntry('gemma.task');}}catch(e){}llm=null;setSt('Model hata diya gaya');if(NAT())natRefresh();};
+natRefresh();
 
 async function gma(prompt,d){
   let t='';
+  if(llm&&llm.native){
+    d.innerHTML='⏳ Soch raha hoon…';
+    const r=await NAT().generate({prompt:`<start_of_turn>user\n${prompt}<end_of_turn>\n<start_of_turn>model\n`});
+    t=String((r&&r.text)||'').replace(/<end_of_turn>[\s\S]*$/,'').trim();
+    d.innerHTML=esc(t);cbM.scrollTop=cbM.scrollHeight;return t;
+  }
   await llm.generateResponse(`<start_of_turn>user\n${prompt}<end_of_turn>\n<start_of_turn>model\n`,(x)=>{t+=x;d.innerHTML=esc(t);cbM.scrollTop=cbM.scrollHeight;});
   return t;
 }
