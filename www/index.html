@@ -72,14 +72,16 @@
   }
   .modal-box.fullscreen { max-width: 100%; height: 100vh; border-radius: 0; }
   .modal-header {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 10px 14px; background: #1a1a1a; font-size: 14px; gap: 10px;
+    display: flex; justify-content: flex-start; align-items: center;
+    padding: 6px 10px; background: #1a1a1a; font-size: 14px; gap: 10px;
   }
   .modal-header span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .close-btn {
-    background: #ff4757; color: #fff; border: none; border-radius: 6px;
-    padding: 7px 14px; cursor: pointer; font-size: 13px; font-weight: 600; flex-shrink: 0;
+    background: transparent; color: #fff; border: none; border-radius: 50%;
+    width: 40px; height: 40px; cursor: pointer; font-size: 24px; line-height: 1; flex-shrink: 0;
   }
+  .close-btn:active { background: rgba(255,255,255,.14); }
+  .modal-box.pdfmode .modal-header { display: none; }  /* PDF viewer ka apna ← hai */
   .modal-body { flex: 1; position: relative; background: #000; }
   iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
   .loading { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #90a4ae; font-size: 13px; }
@@ -194,8 +196,8 @@ header{padding:0 46px}
 <div class="modal-overlay" id="modalOverlay">
   <div class="modal-box" id="modalBox">
     <div class="modal-header">
+      <button class="close-btn" id="closeBtn" aria-label="Back">←</button>
       <span id="modalTitle">Viewer</span>
-      <button class="close-btn" id="closeBtn">✕ Close</button>
     </div>
     <div class="modal-body">
       <div class="loading" id="loadingMsg">Loading...</div>
@@ -264,12 +266,26 @@ header{padding:0 46px}
   const loadingMsg = document.getElementById('loadingMsg');
   const closeBtn = document.getElementById('closeBtn');
 
-  function openPdf(title, file, page) {
+  async function openPdf(title, file, page) {
+    // pehle check: file sach mein app ke andar maujood hai? (nahi to saaf message, galat naam turant pakda jaye)
+    try {
+      const enc = file.split('/').map(encodeURIComponent).join('/');
+      const r = await fetch(enc, { method: 'HEAD' });
+      if (!r.ok) {
+        modalBox.classList.remove('pdfmode'); modalBox.classList.add('fullscreen');
+        modalTitle.textContent = title;
+        loadingMsg.style.display = 'none';
+        frame.srcdoc = '<meta name="viewport" content="width=device-width,initial-scale=1"><body style="margin:0;background:#0A0F1E;color:#F4F6FB;font-family:system-ui,sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;text-align:center;padding:0 24px;box-sizing:border-box"><div style="line-height:1.55">Ye PDF nahi mili 😕<br><br><b style="color:#FFD21F;word-break:break-all">' + file.replace(/</g, '&lt;') + '</b><br><br>GitHub mein <b>www/pdfs/</b> ke andar iska naam bilkul aisa hi hona chahiye (space aur capital letter bhi).</div>';
+        overlay.classList.add('active');
+        return;
+      }
+    } catch (_) { /* check nahi ho paya to seedha kholne ki koshish */ }
     openPdfViewer(title, 'pdf-viewer.html?f=' + encodeURIComponent(file.split('/').map(encodeURIComponent).join('/')) + '&t=' + encodeURIComponent(title) + (page ? '&p=' + page : ''));
   }
 
   // Answer Key: PDF na ho to mock test ke data se table banti hai (offline, Drive ki zaroorat nahi)
   async function openAnswerKey(title, idx) {
+    modalBox.classList.remove('pdfmode');
     modalBox.classList.add('fullscreen');
     modalTitle.textContent = title;
     loadingMsg.textContent = 'Answer key bana raha hoon…';
@@ -288,7 +304,7 @@ header{padding:0 46px}
   }
 
   function openPdfViewer(title, url) {
-    modalBox.classList.add('fullscreen');
+    modalBox.classList.add('fullscreen', 'pdfmode');
     modalTitle.textContent = title;
     loadingMsg.style.display = 'block';
     frame.removeAttribute('srcdoc');
@@ -297,6 +313,7 @@ header{padding:0 46px}
   }
 
   async function openMockViewer(title, dataId, replay) {
+    modalBox.classList.remove('pdfmode');
     window.curTest = {title: title.replace(/ — Mock Test$/, ''), dataId};
     modalBox.classList.add('fullscreen');
     modalTitle.textContent = title;
@@ -311,13 +328,22 @@ header{padding:0 46px}
     }
   }
 
-  frame.addEventListener('load', () => { loadingMsg.style.display = 'none'; });
+  frame.addEventListener('load', () => {
+    loadingMsg.style.display = 'none';
+    // PDF viewer ka ← button iframe ke andar poore app ko peeche/blank kar deta tha; ab sirf viewer band hota hai
+    if (modalBox.classList.contains('pdfmode')) {
+      try {
+        const b = frame.contentDocument && frame.contentDocument.getElementById('backBtn');
+        if (b) b.onclick = (e) => { e && e.preventDefault(); closeViewer(); };
+      } catch (_) {}
+    }
+  });
 
   function closeViewer() {
     overlay.classList.remove('active');
     frame.removeAttribute('srcdoc');
     frame.src = 'about:blank';
-    modalBox.classList.remove('fullscreen');
+    modalBox.classList.remove('fullscreen', 'pdfmode');
   }
 
   closeBtn.addEventListener('click', closeViewer);
