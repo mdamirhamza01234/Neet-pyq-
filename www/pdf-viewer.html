@@ -178,7 +178,7 @@
   .nt{display:flex; gap:10px; align-items:flex-start; padding:11px 4px; border-bottom:1px solid var(--line);}
   .nt .pgc{flex:none; min-width:46px; padding:6px 8px; border-radius:9px; background:#33407A; font-size:12.5px; font-weight:800; text-align:center; cursor:pointer;}
   .nt .tx{flex:1; font-size:14px; line-height:1.45; white-space:pre-wrap; word-break:break-word;}
-  .nt .rm{flex:none; width:32px; height:32px; border-radius:50%; background:none; border:none; color:var(--soft); font-size:18px; cursor:pointer;}
+  .nt .rm{display:flex; align-items:center; justify-content:center; flex:none; width:32px; height:32px; border-radius:50%; background:none; border:none; color:var(--soft); font-size:18px; cursor:pointer;}
   .fcMeta{display:flex; justify-content:space-between; font-size:12.5px; color:var(--soft); font-weight:700; margin-bottom:10px;}
   .fc{border:1px solid var(--line); background:rgba(255,255,255,.05); border-radius:18px; padding:18px; min-height:140px; font-size:16.5px; line-height:1.55;}
   .fc .bl{display:inline-block; min-width:70px; border-bottom:2px solid #8D7BFF; color:transparent; user-select:none;}
@@ -194,9 +194,56 @@
   .ttsrow2 input[type=range]{flex:1; min-width:0; accent-color:#9DB0FF;}
   .ttsrow2 select{max-width:42%; background:rgba(255,255,255,.08); color:var(--ink); border:1px solid var(--line); border-radius:10px; padding:6px; font-size:12px;}
   body.tts .fab, body.tts .pgnav{display:none !important;}
+
+  /* ---- AI button + sheet ---- */
+  .aiFab{position:fixed; left:16px; bottom:calc(24px + env(safe-area-inset-bottom)); width:48px; height:48px; border-radius:50%; border:1px solid rgba(255,255,255,.2);
+    background:linear-gradient(135deg,#8b5cf6,#3b82f6 60%,var(--cyan)); color:#fff; display:flex; align-items:center; justify-content:center; z-index:15; cursor:pointer;
+    box-shadow:0 10px 22px -8px rgba(99,102,241,.9);}
+  .aiFab svg{width:24px; height:24px; fill:none; stroke:#fff; stroke-width:2; stroke-linecap:round; stroke-linejoin:round;}
+  body.tts .aiFab, body.annotating .aiFab{display:none !important;}
+  #aiSheet{height:86vh; max-height:86vh; display:flex; flex-direction:column; padding-bottom:calc(12px + env(safe-area-inset-bottom));}
+  #aiSheet .aiTop{display:flex; align-items:center; gap:10px; flex:none;}
+  #aiSheet .aiTop h3{margin:0; flex:1;}
+  #aiSheet .aiTop small{display:block; font-size:11.5px; color:var(--soft); font-weight:600; margin-top:2px;}
+  #aiSheet .aiX{display:flex; align-items:center; justify-content:center; color:var(--ink); border:1px solid var(--line); background:rgba(255,255,255,.06); border-radius:12px; width:38px; height:38px; font-size:18px; cursor:pointer;}
+  #aiChips{display:flex; gap:8px; overflow-x:auto; padding:10px 0 6px; flex:none; -webkit-overflow-scrolling:touch;}
+  #aiChips button{flex:none; padding:8px 12px; border-radius:999px; border:1px solid var(--line); background:rgba(255,255,255,.06); font-size:13px; font-weight:600; cursor:pointer; white-space:nowrap;}
+  #aiMsgs{flex:1 1 auto; min-height:0; overflow-y:auto; display:flex; flex-direction:column; gap:10px; padding:6px 0; -webkit-user-select:text; user-select:text;}
+  .aiM{max-width:92%; padding:10px 13px; border-radius:16px; font-size:14.5px; line-height:1.55; overflow-wrap:anywhere; -webkit-user-select:text; user-select:text;}
+  .aiM.u{align-self:flex-end; background:linear-gradient(135deg,#2563eb,#0891b2); color:#fff; border-bottom-right-radius:5px; white-space:pre-wrap;}
+  .aiM.a{align-self:flex-start; background:rgba(255,255,255,.07); border:1px solid var(--line); border-bottom-left-radius:5px;}
+  .aiM.a.err{border-color:rgba(255,107,107,.5); background:rgba(255,107,107,.08);}
+  .aiM .eng{display:block; margin-top:8px; font-size:11px; color:var(--cyan);}
+  .aiRow{display:flex; gap:8px; align-items:flex-end; flex:none; padding-top:8px;}
+  .aiRow textarea{flex:1; min-width:0; height:46px; max-height:110px; resize:none; background:rgba(255,255,255,.07); border:1px solid var(--line); border-radius:14px; color:var(--ink); font-size:15px; line-height:1.4; padding:12px; outline:none; font-family:var(--sans);}
+  .aiRow button{flex:none; width:46px; height:46px; border-radius:50%; border:none; background:linear-gradient(135deg,var(--cyan),#3b82f6); color:#04112b; font-size:20px; font-weight:800; cursor:pointer;}
+  .aiRow button{display:flex; align-items:center; justify-content:center;}
+  .aiRow button:disabled{opacity:.45;}
   .toast{position:fixed; left:50%; bottom:calc(96px + env(safe-area-inset-bottom)); transform:translateX(-50%) translateY(20px); opacity:0; z-index:40;
     background:#0F1530; border:1px solid rgba(255,255,255,.18); border-radius:999px; padding:10px 18px; font-size:13.5px; font-weight:600; pointer-events:none; transition:all .22s ease; white-space:nowrap;}
   .toast.show{opacity:1; transform:translateX(-50%) translateY(0);}
+  .mj { font-family: 'Times New Roman', Georgia, serif; font-size: 1.1em; }
+  .mj i { font-style: italic; } .mj .up { font-style: normal; }
+  .mj sup, .mj sub { font-size: .72em; line-height: 0; }
+  .sq { display: inline-flex; align-items: stretch; vertical-align: middle; }
+  .sq > .rd { position: relative; width: .8em; flex: none; } .rd svg, .dg svg { position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: visible; }
+  .sq > .ov { padding: 2px .2em 0 .05em; }
+  .dl { display: inline-flex; align-items: stretch; vertical-align: middle; }
+  .dl > .dg { position: relative; width: .5em; flex: none; } .dl > .in { padding: 0 1px; }
+  .dl + sup, .dl + sub { vertical-align: top; line-height: 1; }
+  .dl + sub { vertical-align: bottom; }
+  .mb { display: block; text-align: center; margin: 8px 0; overflow-x: auto; padding: 4px 0; }
+  .fr { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; margin: 0 3px; font-size: .95em; }
+  .fr > .nu { border-bottom: 1px solid currentColor; padding: 0 4px; } .fr > .de { padding: 0 4px; }
+  .ov { border-top: 1px solid currentColor; padding: 0 1px; }
+  .vc { position: relative; display: inline-block; } .vc::before { content: '\2192'; position: absolute; top: -.62em; left: 0; right: 0; text-align: center; font-size: .7em; font-style: normal; }
+  .aiM p{margin:0 0 8px;} .aiM p:last-child{margin-bottom:0;}
+  .aiM ul,.aiM ol{margin:4px 0 8px 20px;padding:0;} .aiM li{margin:2px 0;}
+  .aiM b{color:#fff;} .aiM .h{font-weight:700;color:#fff;}
+  .aiM code{background:rgba(255,255,255,.08);padding:1px 6px;border-radius:6px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13.5px;}
+  .fcImg{background:#fff; border-radius:12px; padding:6px; text-align:center; overflow:hidden; margin-bottom:2px;}
+  .fcImg img{max-width:100%; height:auto; max-height:46vh; display:block; margin:0 auto; object-fit:contain;}
+  .fcTx{margin-top:12px; padding-top:10px; border-top:1px dashed var(--line); font-size:14px; line-height:1.55; color:var(--soft);}
 </style>
 </head>
 <body>
@@ -230,6 +277,14 @@
   <button id="pgDown" aria-label="Next page"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button>
 </div>
 
+
+<button class="aiFab" id="aiFab" aria-label="Ask AI about this page"><svg viewBox="0 0 24 24"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8L12 3z"/><path d="M19 15l.8 2.2 2.2.8-2.2.8L19 21l-.8-2.2L16 18l2.2-.8L19 15z"/></svg></button>
+<div class="sheet tall" id="aiSheet" hidden>
+  <div class="aiTop"><div style="flex:1;min-width:0"><h3>NEET AI</h3><small id="aiCtx"></small></div><button class="aiX" id="aiClr" aria-label="Clear chat"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></svg></button><button class="aiX" id="aiX" aria-label="Close"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <div id="aiChips"></div>
+  <div id="aiMsgs"></div>
+  <div class="aiRow"><textarea id="aiTa" placeholder="Is page ke bare mein pucho…" rows="1"></textarea><button id="aiGo" aria-label="Send"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></button></div>
+</div>
 <button class="fab" id="fab" aria-label="Annotate"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button>
 
 <div class="tools" id="tools" hidden>
@@ -274,7 +329,6 @@
   <hr>
   <button id="mAnnVis"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg><span id="annVisLabel">Hide annotations</span></button>
   <button id="mClear" class="danger"><svg viewBox="0 0 24 24"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg>Clear all annotations</button>
-  <div style="padding:8px 14px 4px;font-size:11px;opacity:.55;text-align:center">Viewer v5 &middot; gap0 + motai</div>
 </div>
 
 <div class="modal" id="gotoModal" hidden>
@@ -1366,7 +1420,7 @@ function flushStudy(){
   st.days[k] = before + Math.round(studyAcc); studyAcc = 0;
   var keys = Object.keys(st.days).sort(); if(keys.length > 120) keys.slice(0, keys.length - 120).forEach(function(d){ delete st.days[d]; });
   lsSet(K_STUDY, st);
-  if(before < st.goal * 60 && st.days[k] >= st.goal * 60) toast('Aaj ka goal poora! 🎉');
+  if(before < st.goal * 60 && st.days[k] >= st.goal * 60) toast('Aaj ka goal poora!');
 }
 setInterval(function(){
   if(document.hidden || !pages.length) return;
@@ -1470,7 +1524,7 @@ function renderNotes(){
   if(!notes.length){ box.innerHTML = '<div class="empty">Abhi koi note nahi.</div>'; return; }
   notes.slice().sort(function(a, b){ return a.n - b.n || a.ts - b.ts; }).forEach(function(nt){
     var row = document.createElement('div'); row.className = 'nt';
-    row.innerHTML = '<div class="pgc">p. ' + nt.n + '</div><div class="tx">' + esc(nt.text) + '</div><button class="rm" aria-label="Delete">&#10005;</button>';
+    row.innerHTML = '<div class="pgc">p. ' + nt.n + '</div><div class="tx">' + esc(nt.text) + '</div><button class="rm" aria-label="Delete"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>';
     row.querySelector('.pgc').onclick = function(){ closeLayer('notes'); setTimeout(function(){ goPage(nt.n); }, 80); };
     row.querySelector('.rm').onclick = function(){ notes = notes.filter(function(x){ return x.id !== nt.id; }); saveNotes(); renderNotes(); };
     box.appendChild(row);
@@ -1529,6 +1583,24 @@ function clozeOf(text){
   var back = words.map(function(w, i){ return pick.indexOf(i) >= 0 ? '<b>' + esc(w) + '</b>' : esc(w); }).join(' ');
   return { front: front, back: back };
 }
+/* highlight wale hisse ki asli tasveer (equations / symbols bilkul sahi dikhte hain) */
+function cropOf(c){
+  if(c.img) return Promise.resolve(c.img);
+  var p = pages[c.n - 1], s = c.s;
+  if(!p || !s || !s.p || s.p.length < 2) return Promise.resolve(null);
+  var vp1 = p.page.getViewport({ scale: 1 }), X = vp1.width, Y = vp1.height;
+  var x0 = 1e9, y0 = 1e9, x1 = -1e9, y1 = -1e9, i;
+  for(i = 0; i + 1 < s.p.length; i += 2){ x0 = Math.min(x0, s.p[i]); x1 = Math.max(x1, s.p[i]); y0 = Math.min(y0, s.p[i + 1]); y1 = Math.max(y1, s.p[i + 1]); }
+  var pad = (s.w || 0.02) * X * 0.5 + 4;
+  x0 = Math.max(0, x0 * X - pad); x1 = Math.min(X, x1 * X + pad); y0 = Math.max(0, y0 * Y - pad); y1 = Math.min(Y, y1 * Y + pad);
+  var w = Math.max(10, x1 - x0), h = Math.max(10, y1 - y0);
+  var sc = Math.min(3, 1400 / w, 2600 / h); sc = Math.max(sc, 1);
+  var cv = document.createElement('canvas'); cv.width = Math.round(w * sc); cv.height = Math.round(h * sc);
+  var vp = p.page.getViewport({ scale: sc });
+  return p.page.render({ canvasContext: cv.getContext('2d'), viewport: vp, transform: [1, 0, 0, 1, -x0 * sc, -y0 * sc], background: '#ffffff' }).promise.then(function(){
+    c.img = cv.toDataURL('image/jpeg', 0.92); return c.img;
+  }).catch(function(){ return null; });
+}
 var deck = [], deckTotal = 0, shown = false;
 function openCards(){
   var jobs = [];
@@ -1539,7 +1611,7 @@ function openCards(){
     if(jobs.length) saveAnnSoon();
     var seen = {}; deck = [];
     Object.keys(ann).sort(function(a, b){ return a - b; }).forEach(function(k){
-      (ann[k] || []).forEach(function(s){ if(s.k === 'h' && s.t && s.t.length >= 12 && !seen[s.t]){ seen[s.t] = 1; deck.push({ n: +k, t: s.t }); } });
+      (ann[k] || []).forEach(function(s){ if(s.k === 'h' && s.t && s.t.length >= 12 && !seen[s.t]){ seen[s.t] = 1; deck.push({ n: +k, t: s.t, s: s }); } });
     });
     deckTotal = deck.length; shown = false; renderCard();
     openSheet('cardSheet', 'cards', plainClose('cardSheet'));
@@ -1548,18 +1620,21 @@ function openCards(){
 function renderCard(){
   var box = $('cardBody');
   if(!deckTotal){ box.innerHTML = '<div class="empty">Abhi koi highlight nahi mila.<br>Pencil dabakar highlighter se text par line khichiye, phir yahan card ban jayega.</div>'; return; }
-  if(!deck.length){ box.innerHTML = '<div class="empty">Sab cards ho gaye! 🎉</div><div class="row"><button class="go" id="fcAgain">Dobara shuru karo</button></div>'; $('fcAgain').onclick = function(){ openCardsAgain(); }; return; }
+  if(!deck.length){ box.innerHTML = '<div class="empty">Sab cards ho gaye!</div><div class="row"><button class="go" id="fcAgain">Dobara shuru karo</button></div>'; $('fcAgain').onclick = function(){ openCardsAgain(); }; return; }
   var c = deck[0], cl = clozeOf(c.t), idx = deckTotal - deck.length + 1;
   var face = shown ? (cl ? cl.back : esc(c.t)) : (cl ? cl.front : '<span style="color:var(--soft)">Is page ke highlight ko yaad karne ki koshish kijiye, phir jawab dekhiye.</span>');
-  box.innerHTML = '<div class="fcMeta"><span>Card ' + idx + ' / ' + deckTotal + '</span><span id="fcPg" style="cursor:pointer;text-decoration:underline">Page ' + c.n + '</span></div><div class="fc">' + face + '</div>' +
+  var imgHtml = '<div class="fcImg" id="fcImg">' + (c.img ? '<img src="' + c.img + '" alt="">' : '<span style="color:var(--soft);font-size:13px">Tasveer ban rahi hai…</span>') + '</div>';
+  box.innerHTML = '<div class="fcMeta"><span>Card ' + idx + ' / ' + deckTotal + '</span><span id="fcPg" style="cursor:pointer;text-decoration:underline">Page ' + c.n + '</span></div><div class="fc">' + imgHtml + (shown ? '<div class="fcTx">' + face + '</div>' : '') + '</div>' +
     (shown ? '<div class="row"><button id="fcAgainOne">Phir se</button><button class="go" id="fcKnow">Yaad hai</button></div>' : '<div class="row"><button class="go" id="fcShow">Jawab dikhao</button></div>');
+  if(!c.img) cropOf(c).then(function(u){ var el = $('fcImg'); if(deck[0] !== c || !el) return; if(u) el.innerHTML = '<img src="' + u + '" alt="">'; else { el.remove(); var f = box.querySelector('.fc'); if(f && !shown) f.insertAdjacentHTML('beforeend', '<div class="fcTx">' + face + '</div>'); } });
+  else if(!c.img && false) {}
   $('fcPg').onclick = function(){ closeLayer('cards'); setTimeout(function(){ goPage(c.n); }, 80); };
   if(shown){
     $('fcKnow').onclick = function(){ deck.shift(); shown = false; renderCard(); };
     $('fcAgainOne').onclick = function(){ deck.push(deck.shift()); shown = false; renderCard(); };
   } else $('fcShow').onclick = function(){ shown = true; renderCard(); };
 }
-function openCardsAgain(){ var seen = {}; deck = []; Object.keys(ann).sort(function(a, b){ return a - b; }).forEach(function(k){ (ann[k] || []).forEach(function(s){ if(s.k === 'h' && s.t && s.t.length >= 12 && !seen[s.t]){ seen[s.t] = 1; deck.push({ n: +k, t: s.t }); } }); }); deckTotal = deck.length; shown = false; renderCard(); }
+function openCardsAgain(){ var seen = {}; deck = []; Object.keys(ann).sort(function(a, b){ return a - b; }).forEach(function(k){ (ann[k] || []).forEach(function(s){ if(s.k === 'h' && s.t && s.t.length >= 12 && !seen[s.t]){ seen[s.t] = 1; deck.push({ n: +k, t: s.t, s: s }); } }); }); deckTotal = deck.length; shown = false; renderCard(); }
 $('mCards').onclick = menuThen(openCards);
 
 /* ---- read aloud ---- */
@@ -1643,6 +1718,264 @@ $('ttsVoice').addEventListener('change', function(){ set.voice = this.value; sav
 
 refreshToggles(); if(set.awake) setAwake(true);
 setTimeout(function(){ if(pages.length) savePos(); }, 1500);
+
+/* =====================================================================
+   ASK AI (is page ka concept) - Gemini online / Gemma offline
+   Settings index.html ke Ask AI se share hoti hain (same phone storage)
+   ===================================================================== */
+(function(){
+  var SK = 'skc_ai_settings', busy = false, hist = [];
+  function getSt(){ var o = lsGet(SK, {}); if(!o.key){ try { o.key = localStorage.getItem('cbKey') || ''; } catch(e){} } return o; }
+  var st = getSt();
+  var G = null;
+  try { if(window.Capacitor && window.Capacitor.isPluginAvailable && window.Capacitor.isPluginAvailable('Gemma')) G = window.Capacitor.Plugins.Gemma; } catch(e){ G = null; }
+  var FALL = ['gemini-flash-latest', 'gemini-2.5-flash', 'gemini-flash-lite-latest', 'gemini-2.5-flash-lite'], chain = null, cool = {};
+  function kind(n){ var m = /^gemini-(\d+(?:\.\d+)?)-flash(-lite)?(-preview[\w.-]*)?$/.exec(n); return m ? { v: parseFloat(m[1]), lite: m[2] ? 1 : 0, pre: m[3] ? 1 : 0 } : null; }
+  function GE(status, msg){ this.status = status; this.msg = msg || ''; }
+  function keyErr(e){ return e instanceof GE && (e.status === 401 || e.status === 403 || (e.status === 400 && /api key|API_KEY/i.test(e.msg))); }
+  function vtx(){ return /^AQ\./.test(st.key || ''); }
+  async function models(){
+    if(vtx()) return ['gemini-2.5-flash', 'gemini-flash-latest', 'gemini-2.5-flash-lite', 'gemini-flash-lite-latest'];
+    if(chain && Date.now() - chain.t < 6 * 3600e3) return chain.l;
+    var list = [], c = lsGet('skc_ai_models', null);
+    if(c && c.list && Date.now() - c.t < 24 * 3600e3) list = c.list;
+    else {
+      var r = null; try { r = await fetch('https://generativelanguage.googleapis.com/v1beta/models?pageSize=200', { headers: { 'x-goog-api-key': st.key } }); } catch(e){ r = null; }
+      if(r && r.ok){
+        var j = await r.json(), f = [];
+        (j.models || []).forEach(function(m){ var n = String(m.name || '').replace(/^models\//, ''), k = kind(n); if(k && (m.supportedGenerationMethods || []).indexOf('generateContent') > -1) f.push({ n: n, k: k }); });
+        f.sort(function(a, b){ return b.k.v - a.k.v || a.k.lite - b.k.lite || a.k.pre - b.k.pre; });
+        list = f.slice(0, 3).map(function(x){ return x.n; });
+        if(list.length) lsSet('skc_ai_models', { t: Date.now(), list: list });
+      } else if(r && (r.status === 400 || r.status === 401 || r.status === 403)){ var m2 = ''; try { m2 = (await r.json()).error.message; } catch(e){} throw new GE(r.status, m2); }
+    }
+    var out = []; list.concat(FALL).forEach(function(n){ if(out.indexOf(n) < 0) out.push(n); });
+    chain = { t: Date.now(), l: out.slice(0, 6) }; return chain.l;
+  }
+  function gtxt(j){ var c = j && j.candidates && j.candidates[0], p = c && c.content && c.content.parts || [], t = ''; p.forEach(function(x){ if(x.text && !x.thought) t += x.text; }); return t; }
+  async function postAuth(model, body){
+    var enc = encodeURIComponent, json = { 'Content-Type': 'application/json' };
+    var gl = 'https://generativelanguage.googleapis.com/v1beta/models/' + enc(model) + ':streamGenerateContent?alt=sse';
+    function req(k){
+      if(k === 'bearer') return [gl, { 'Content-Type': 'application/json', Authorization: 'Bearer ' + st.key }];
+      if(k === 'query') return [gl + '&key=' + enc(st.key), json];
+      if(k === 'vertex') return ['https://aiplatform.googleapis.com/v1/publishers/google/models/' + enc(model) + ':streamGenerateContent?alt=sse&key=' + enc(st.key), json];
+      return [gl, { 'Content-Type': 'application/json', 'x-goog-api-key': st.key }];
+    }
+    var aq = vtx(), kinds = aq ? ['bearer', 'query', 'vertex'] : ['header'], mem = lsGet('skc_ai_auth', null);
+    if(aq && mem && kinds.indexOf(mem) > -1) kinds = [mem].concat(kinds.filter(function(k){ return k !== mem; }));
+    var lastRes = null, lastErr = null;
+    for(var i = 0; i < kinds.length; i++){
+      try {
+        var r = req(kinds[i]), res = await fetch(r[0], { method: 'POST', headers: r[1], body: body });
+        if(res.status === 401 || res.status === 403){ lastRes = res; continue; }
+        if(aq && res.ok) lsSet('skc_ai_auth', kinds[i]);
+        return res;
+      } catch(e){ lastErr = e; }
+    }
+    if(lastRes) return lastRes;
+    throw lastErr;
+  }
+  async function callG(model, sys, msgs, on){
+    var res = await postAuth(model, JSON.stringify({ systemInstruction: { parts: [{ text: sys }] }, contents: msgs.map(function(m){ return { role: m.r === 'u' ? 'user' : 'model', parts: [{ text: m.t }] }; }), generationConfig: { temperature: 0.4, maxOutputTokens: 1400 } }));
+    if(!res.ok){ var msg = ''; try { msg = (await res.json()).error.message; } catch(e){} throw new GE(res.status, msg); }
+    var full = '';
+    if(!res.body || !res.body.getReader){ try { JSON.parse(await res.text()).forEach(function(x){ full += gtxt(x); }); } catch(e){} if(full) on(full); }
+    else {
+      var rd = res.body.getReader(), dec = new TextDecoder(), buf = '';
+      for(;;){
+        var x = await rd.read(); if(x.done) break; buf += dec.decode(x.value, { stream: true }); var i;
+        while((i = buf.indexOf('\n')) > -1){
+          var line = buf.slice(0, i).replace(/\r$/, '').trim(); buf = buf.slice(i + 1);
+          if(line.indexOf('data:') !== 0) continue; var d = line.slice(5).trim(); if(!d || d === '[DONE]') continue;
+          try { var t = gtxt(JSON.parse(d)); if(t){ full += t; on(full); } } catch(e){}
+        }
+      }
+    }
+    if(!full) throw new GE(0, 'Khaali jawab aaya.');
+    return full;
+  }
+  async function gemini(sys, msgs, on){
+    var ms = await models(), av = ms.filter(function(m){ return !(cool[m] > Date.now()); }), last = null;
+    if(!av.length){ cool = {}; av = ms; }
+    for(var i = 0; i < av.length; i++){
+      try { return { t: await callG(av[i], sys, msgs, on), m: av[i] }; }
+      catch(e){ last = e; if(!(e instanceof GE) || keyErr(e)) throw e; if(e.status === 429 || e.status === 503) cool[av[i]] = Date.now() + 60000; }
+    }
+    throw last || new GE(0, 'Koi model available nahi.');
+  }
+  function nice(e){
+    if(e instanceof GE){
+      if(keyErr(e)) return (e.status === 400 ? 'Gemini API key galat lag rahi hai. Home page ke chatbot mein ⚙️ dabake check karo.' : 'Gemini ne key allow nahi ki (' + e.status + '). Naya key aistudio.google.com/apikey se banao.') + (e.msg ? '\n\nGoogle ka message: ' + e.msg.slice(0, 220) : '');
+      if(e.status === 429) return 'Gemini ki free limit abhi poori ho gayi hai. Thodi der baad try karo.';
+      return 'Gemini se jawab nahi aaya' + (e.status ? ' (' + e.status + ')' : '') + '.';
+    }
+    return e && e.message ? e.message : 'Internet ya Gemini se connect nahi ho paya.';
+  }
+  async function gemma(prompt){
+    if(!G) throw new Error('Offline Gemma sirf installed app mein chalta hai.');
+    var s = await G.status();
+    if(!s.installed) throw new Error('Offline Gemma model abhi add nahi hai. Home page ke chatbot mein ⚙️ se model add karo.');
+    var r = await G.generate({ prompt: prompt });
+    return String(r.text || '').replace(/<end_of_turn>[\s\S]*$/, '').trim();
+  }
+  async function hasGemma(){ if(!G) return false; try { return !!(await G.status()).installed; } catch(e){ return false; } }
+
+  /* ---- page text ---- */
+  async function ctxText(max){
+    var n = curPage(), out = '';
+    try { out = await pageSpeechText(pages[n - 1]); } catch(e){ out = ''; }
+    if(out.length < max * 0.6 && n < N){ try { out += ' ' + await pageSpeechText(pages[n]); } catch(e){} }
+    return out.slice(0, max);
+  }
+  var RULES = 'You are "NEET AI", a friendly NEET (Physics, Chemistry, Biology) tutor inside a NEET PYQ app. The student is reading a NEET question paper or answer-key page right now. Use the PAGE TEXT as the main source and say which chapter and concept it is about. If the page text does not answer the question, use standard NEET / NCERT knowledge and say it is general knowledge. Reply in the same language as the student (Hindi, English or Hinglish). Be short and step by step; give formulas and a tiny example when useful. Write every formula in simple LaTeX inside single dollar signs, e.g. $v = u + at$, $s = ut + \\frac{1}{2}at^2$, $\\sqrt{gR}$, $\\Delta T$, $\\omega$. Put an important formula alone on a line as $$ ... $$. Never write math with curly braces in plain text.';
+
+  /* ---- UI ---- */
+  var sheet = $('aiSheet'), msgs = $('aiMsgs'), ta = $('aiTa'), go = $('aiGo');
+  /* ---------- LaTeX -> HTML (offline, tiny) ---------- */
+  var SYM = { alpha:'α',beta:'β',gamma:'γ',delta:'δ',epsilon:'ε',varepsilon:'ε',zeta:'ζ',eta:'η',theta:'θ',vartheta:'ϑ',lambda:'λ',mu:'μ',nu:'ν',xi:'ξ',pi:'π',rho:'ρ',sigma:'σ',tau:'τ',phi:'φ',varphi:'φ',chi:'χ',psi:'ψ',omega:'ω',
+    Gamma:'Γ',Delta:'Δ',Theta:'Θ',Lambda:'Λ',Pi:'Π',Sigma:'Σ',Phi:'Φ',Psi:'Ψ',Omega:'Ω',
+    cdot:'·',times:'×',div:'÷',pm:'±',mp:'∓',approx:'≈',sim:'∼',simeq:'≃',ll:'≪',gg:'≫',le:'≤',leq:'≤',ge:'≥',geq:'≥',ne:'≠',neq:'≠',equiv:'≡',propto:'∝',infty:'∞',
+    to:'→',rightarrow:'→',leftarrow:'←',Rightarrow:'⇒',Leftrightarrow:'⇔',leftrightarrow:'↔',partial:'∂',nabla:'∇',int:'∫',oint:'∮',sum:'∑',prod:'∏',circ:'°',degree:'°',
+    ldots:'…',cdots:'⋯',dots:'…',therefore:'∴',because:'∵',angle:'∠',perp:'⊥',parallel:'∥',in:'∈',hbar:'ħ',ell:'ℓ',prime:'′',
+    sin:'sin',cos:'cos',tan:'tan',cot:'cot',sec:'sec',csc:'csc',log:'log',ln:'ln',exp:'exp',lim:'lim',min:'min',max:'max' };
+  var FUNCS = { sin:1,cos:1,tan:1,cot:1,sec:1,csc:1,cosec:1,log:1,ln:1,exp:1,lim:1,min:1,max:1,sinh:1,cosh:1,tanh:1 };
+  var DP = { '(': 'M8 1Q1 50 8 99', ')': 'M2 1Q9 50 2 99', '[': 'M8 1H2V99H8', ']': 'M2 1H8V99H2', '|': 'M5 1V99', '{': 'M8 1Q4 1 4 10V40Q4 50 1 50Q4 50 4 60V90Q4 99 8 99', '}': 'M2 1Q6 1 6 10V40Q6 50 9 50Q6 50 6 60V90Q6 99 2 99' };
+  function svgP(d) { return '<svg viewBox="0 0 10 100" preserveAspectRatio="none" aria-hidden="true"><path d="' + d + '" fill="none" stroke="currentColor" stroke-width="1.3" vector-effect="non-scaling-stroke"/></svg>'; }
+  var DLM = { sqrt: svgP('M0 62L2.5 56L5 98L10 1') };
+  function dsvg(ch) { return DP[ch] ? svgP(DP[ch]) : (ch === '.' ? '' : ch); }
+  function tex(s) {
+    var i = 0, n = s.length;
+    function delim() { while (s[i] === ' ') i++; var c = s[i++] || ''; if (c === '\\') { var m2 = s.slice(i).match(/^[a-zA-Z]+/); if (m2) { i += m2[0].length; return m2[0] === 'langle' ? '⟨' : m2[0] === 'rangle' ? '⟩' : ''; } c = s[i++] || ''; } return c; }
+    function rawGroup() { if (s[i] !== '{') return s[i] ? s[i++] : ''; var d = 0, st = ++i; for (; i < n; i++) { if (s[i] === '{') d++; else if (s[i] === '}') { if (!d) break; d--; } } var r = s.slice(st, i); i++; return r; }
+    function seq(stop) { var o = ''; while (i < n) { var c = s[i]; if (c === '}') { i++; if (stop) return o; continue; } o += withScripts(); } return o; }
+    function withScripts() {
+      var b = atom();
+      for (;;) {
+        var j = i; while (s[j] === ' ') j++;
+        if (s[j] === '^') { i = j + 1; b += '<sup>' + atom() + '</sup>'; }
+        else if (s[j] === '_') { i = j + 1; b += '<sub>' + atom() + '</sub>'; }
+        else break;
+      }
+      return b;
+    }
+    function atom() {
+      while (s[i] === ' ') i++;
+      if (i >= n) return '';
+      var c = s[i], m, nm;
+      if (c === '{') { i++; return seq(true); }
+      if (c === '\\') {
+        i++; m = s.slice(i).match(/^[a-zA-Z]+/);
+        if (!m) { nm = s[i++] || ''; if (nm === '\\') return '<br>'; if (nm === ',' || nm === ';' || nm === ':') return ' '; if (nm === '!') return ''; return nm; }
+        nm = m[0]; i += nm.length;
+        if (nm === 'frac' || nm === 'dfrac' || nm === 'tfrac') { var a = atom(), d = atom(); return '<span class="fr"><span class="nu">' + a + '</span><span class="de">' + d + '</span></span>'; }
+        if (nm === 'sqrt') { if (s[i] === '[') { var k = s.indexOf(']', i); i = k < 0 ? n : k + 1; } return '<span class="sq"><span class="rd">' + DLM.sqrt + '</span><span class="ov">' + atom() + '</span></span>'; }
+        if (nm === 'text' || nm === 'mathrm' || nm === 'operatorname' || nm === 'textrm') return '<span class="up">' + rawGroup() + '</span>';
+        if (nm === 'mathbf' || nm === 'textbf' || nm === 'boldsymbol') return '<b>' + atom() + '</b>';
+        if (nm === 'vec') return '<span class="vc">' + atom() + '</span>';
+        if (nm === 'hat') return atom() + '\u0302';
+        if (nm === 'bar' || nm === 'overline') return '<span class="ov">' + atom() + '</span>';
+        if (nm === 'dot') return atom() + '\u0307';
+        if (nm === 'left') { var lc = delim(); var inner = ''; while (i < n && s.substr(i, 6) !== '\\right' && s[i] !== '}') inner += withScripts(); var rc = ''; if (s.substr(i, 6) === '\\right') { i += 6; rc = delim(); } return '<span class="dl"><span class="dg">' + dsvg(lc, 0) + '</span><span class="in">' + inner + '</span><span class="dg">' + dsvg(rc, 1) + '</span></span>'; }
+        if (nm === 'right') { delim(); return ''; }
+        if (nm === 'big' || nm === 'Big' || nm === 'bigg' || nm === 'Bigg') return '';
+        if (nm === 'quad' || nm === 'qquad') return '\u2003';
+        if (FUNCS[nm]) return '<span class="up">' + nm + '</span>';
+        return SYM[nm] || nm;
+      }
+      if (/[a-zA-Z]/.test(c)) { m = s.slice(i).match(/^[a-zA-Z]+/)[0]; if (FUNCS[m]) { i += m.length; return '<span class="up">' + m + '</span>'; } i++; return '<i>' + c + '</i>'; }
+      if (c === '&') { m = s.slice(i).match(/^&[a-z]+;/); if (m) { i += m[0].length; return m[0] === '&lt;' ? '&lt;' : m[0] === '&gt;' ? '&gt;' : m[0]; } }
+      if (c === '~') { i++; return ' '; }
+      if (c === "'") { i++; return '′'; }
+      if (c === '-') { i++; return '−'; }
+      i++; return c;
+    }
+    try { return '<span class="mj">' + seq(false) + '</span>'; } catch (e) { return s; }
+  }
+  var MATH_RE = /\$\$([\s\S]+?)\$\$|\\\[([\s\S]+?)\\\]|\\\(([\s\S]+?)\\\)|\$([^$\n\s](?:[^$\n]*?[^$\n\s])?)\$/g;
+  function extractMath(t, store) {
+    return t.replace(MATH_RE, function (all, a, b, c, d) {
+      var disp = a != null || b != null, body = a != null ? a : b != null ? b : c != null ? c : d;
+      var h = tex(body.trim()); if (disp) h = '<span class="mb">' + h + '</span>';
+      store.push(h); return '\u0001' + (store.length - 1) + '\u0002';
+    });
+  }
+  function escM(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+  function inline(s) { return s.replace(/`([^`]+)`/g, '<code>$1</code>').replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>').replace(/(^|[^*\w])\*([^*\n]+?)\*(?![*\w])/g, '$1<i>$2</i>'); }
+  function md(src) {
+    var store = [], lines = extractMath(escM(String(src).replace(/\r/g, '')), store).split('\n'), out = [], list = null, para = [], m;
+    function flushP() { if (para.length) { out.push('<p>' + inline(para.join('<br>')) + '</p>'); para = []; } }
+    function closeL() { if (list) { out.push('</' + list + '>'); list = null; } }
+    lines.forEach(function (l) {
+      if (!l.trim()) { flushP(); closeL(); return; }
+      if ((m = l.match(/^\s*#{1,4}\s+(.*)/))) { flushP(); closeL(); out.push('<p class="h">' + inline(m[1]) + '</p>'); return; }
+      if ((m = l.match(/^\s*[-*•]\s+(.*)/))) { flushP(); if (list !== 'ul') { closeL(); out.push('<ul>'); list = 'ul'; } out.push('<li>' + inline(m[1]) + '</li>'); return; }
+      if ((m = l.match(/^\s*\d+[.)]\s+(.*)/))) { flushP(); if (list !== 'ol') { closeL(); out.push('<ol>'); list = 'ol'; } out.push('<li>' + inline(m[1]) + '</li>'); return; }
+      closeL(); para.push(l);
+    });
+    flushP(); closeL();
+    return out.join('').replace(/\u0001(\d+)\u0002/g, function (x, k) { return store[+k]; });
+  }
+  function add(role, text){ var d = document.createElement('div'); d.className = 'aiM ' + role; if(role === 'u') d.textContent = text; else d.innerHTML = md(text); msgs.appendChild(d); msgs.scrollTop = msgs.scrollHeight; return d; }
+  function chips(){
+    var box = $('aiChips'); box.innerHTML = '';
+    ['Is page ka concept samjhao', 'Important formulas / facts', 'Ek example do', 'Short notes banao', 'Common mistakes'].forEach(function(t){
+      var b = document.createElement('button'); b.type = 'button'; b.textContent = t; b.onclick = function(){ ta.value = t; ask(); }; box.appendChild(b);
+    });
+  }
+  function head(){ $('aiCtx').textContent = title + ' · Page ' + curPage(); }
+  function openAI(){
+    head(); if(!msgs.children.length) add('a', 'Namaste! Main is page ko dekh kar samjhaunga. Neeche se option chuno ya apna sawal likho.');
+    chips(); openSheet('aiSheet', 'ai', function(){ sheet.hidden = true; $('scrim').hidden = true; });
+    msgs.scrollTop = msgs.scrollHeight;
+  }
+  $('aiFab').onclick = openAI;
+  $('aiX').onclick = function(){ closeLayer('ai'); };
+  $('aiClr').onclick = function(){ if(busy) return; hist = []; msgs.innerHTML = ''; add('a', 'Chat saaf ho gayi. Naya sawal pucho.'); };
+  ta.addEventListener('keydown', function(e){ if(e.key === 'Enter' && !e.shiftKey){ e.preventDefault(); ask(); } });
+  ta.addEventListener('input', function(){ ta.style.height = '46px'; ta.style.height = Math.min(ta.scrollHeight, 110) + 'px'; });
+  go.onclick = ask;
+
+  async function ask(){
+    var q = ta.value.trim(); if(!q || busy) return;
+    ta.value = ''; ta.style.height = '46px'; head();
+    add('u', q); st = getSt(); busy = true; go.disabled = true;
+    var bub = add('a', ''); bub.innerHTML = '<span style="color:var(--soft)">Soch raha hun…</span>';
+    var on = function(t){ bub.innerHTML = md(t); msgs.scrollTop = msgs.scrollHeight; };
+    var mode = st.mode || 'auto', online = navigator.onLine !== false, eng = 'none';
+    if(mode === 'device') eng = (await hasGemma()) ? 'device' : 'none';
+    else if(mode === 'gemini') eng = st.key ? 'gemini' : 'none';
+    else if(st.key && online) eng = 'gemini';
+    else if(await hasGemma()) eng = 'device';
+    else eng = st.key ? 'gemini' : 'none';
+    try {
+      if(eng === 'none'){ bub.className = 'aiM a err'; bub.innerHTML = md('AI set up nahi hai. Home page ke chatbot mein ⚙️ dabake Gemini key daalo ya offline Gemma model add karo.'); }
+      else {
+        var past = hist.slice(-6), label = '', ans = '';
+        if(eng === 'gemini'){
+          try {
+            var page = await ctxText(7000);
+            var sys = RULES + '\n\nChapter: ' + title + ' | Page ' + curPage() + '\nPAGE TEXT:\n' + (page || '(is page ka text nahi mila - shayad scanned image hai)');
+            var g = await gemini(sys, past.concat([{ r: 'u', t: q }]), on); ans = g.t; label = 'Gemini · ' + g.m;
+          } catch(e){ if(!keyErr(e) && mode === 'auto' && await hasGemma()) eng = 'device'; else throw e; }
+        }
+        if(eng === 'device'){
+          bub.innerHTML = '<span style="color:var(--soft)">Gemma soch raha hai…</span>';
+          var pg = await ctxText(1300);
+          ans = await gemma('<start_of_turn>user\n' + RULES + '\n\nChapter: ' + title + ' | Page ' + curPage() + '\nPAGE TEXT:\n' + (pg || '(no text)') + '\n\nStudent question: ' + q + '<end_of_turn>\n<start_of_turn>model\n');
+          label = 'Gemma · on-device'; on(ans);
+        }
+        if(!ans) throw new Error('Khaali jawab aaya.');
+        bub.innerHTML = md(ans) + '<span class="eng">' + esc(label) + '</span>';
+        hist.push({ r: 'u', t: q }, { r: 'a', t: ans });
+      }
+    } catch(e){ bub.className = 'aiM a err'; bub.innerHTML = md(nice(e)); }
+    busy = false; go.disabled = false; msgs.scrollTop = msgs.scrollHeight;
+  }
+})();
+
+/* index se aaya: ?cards=1 -> flashcards seedha kholo */
+if(qs.get('cards')){ var cardTry = 0, cardT = setInterval(function(){ cardTry++; if(pages.length && N){ clearInterval(cardT); setTimeout(openCards, 500); } else if(cardTry > 80) clearInterval(cardT); }, 250); }
 
 boot(0);
 })();
