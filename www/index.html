@@ -97,6 +97,55 @@
 .cbm.usr{background:#8e44ad;align-self:flex-end}
 .cbm img{width:100%;background:#fff;border-radius:6px;margin-top:6px}
 .cbm small{color:#90a4ae}
+/* AI jawab: LaTeX math + markdown (11th SKC Physics jaisa) */
+.cbm p { margin: 0 0 8px; }
+.cbm p:last-child { margin-bottom: 0; }
+.cbm .tw { overflow-x: auto; margin: 8px 0; -webkit-overflow-scrolling: touch; }
+.cbm table { border-collapse: collapse; width: 100%; font-size: .9em; line-height: 1.35; }
+.cbm th, .cbm td { border: 1px solid rgba(127,127,127,.4); padding: 6px 8px; text-align: left; vertical-align: top; word-break: normal; overflow-wrap: normal; }
+.cbm th { background: rgba(127,127,127,.18); font-weight: 700; }
+.cbm ul, .cbm ol { margin: 4px 0 8px 20px; }
+.cbm li { margin: 2px 0; }
+.cbm b { color: #fff; }
+.cbm code { background: rgba(255,255,255,.08); padding: 1px 6px; border-radius: 6px; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 13.5px; }
+.cbm .h { font-weight: 700; color: #fff; }
+.cbm .mj { font-family: 'Times New Roman', Georgia, serif; font-size: 1.1em; }
+.cbm .mj i { font-style: italic; }
+.cbm .mj .up { font-style: normal; }
+.cbm .mj sup, .cbm .mj sub { font-size: .72em; line-height: 0; }
+.cbm .sq { display: inline-flex; align-items: stretch; vertical-align: middle; }
+.cbm .sq > .rd { position: relative; width: .8em; flex: none; }
+.cbm .rd svg, .cbm .dg svg { position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: visible; }
+.cbm .sq > .ov { padding: 2px .2em 0 .05em; }
+.cbm .dl { display: inline-flex; align-items: stretch; vertical-align: middle; }
+.cbm .dl > .dg { position: relative; width: .5em; flex: none; }
+.cbm .dl > .in { padding: 0 1px; }
+.cbm .dl + sup, .cbm .dl + sub { vertical-align: top; line-height: 1; }
+.cbm .dl + sub { vertical-align: bottom; }
+.cbm .mb { display: block; text-align: center; margin: 8px 0; overflow-x: auto; padding: 4px 0; }
+.cbm sub, .cbm sup { font-size: .75em; line-height: 0; }
+.cbm .mj .mj { font-size: 1em; }
+.cbm .xr { display: inline-flex; flex-direction: column; align-items: center; vertical-align: middle; margin: 0 .3em; line-height: 1.15; text-align: center; }
+.cbm .xt, .cbm .xb { font-size: .78em; padding: 0 .25em; white-space: nowrap; min-height: 1.1em; }
+.cbm .xm { padding: 0 .1em; }
+.cbm .xl { position: relative; align-self: stretch; min-width: 2.4em; height: 0; border-top: 1.4px solid currentColor; margin: .2em 0; }
+.cbm .xl::after { content: ''; position: absolute; right: -1px; top: -4.3px; width: 6px; height: 6px; border: solid currentColor; border-width: 0 1.4px 1.4px 0; transform: rotate(-45deg); }
+.cbm .xl.lf::after { right: auto; left: -1px; transform: rotate(135deg); }
+.cbm .xe { font-size: 1.6em; line-height: .7; min-width: 1.4em; }
+.cbm .fr { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; margin: 0 3px; font-size: .95em; }
+.cbm .fr > .nu { border-bottom: 1px solid currentColor; padding: 0 4px; }
+.cbm .fr > .de { padding: 0 4px; }
+.cbm .ov { border-top: 1px solid currentColor; padding: 0 1px; }
+.cbm .vc { position: relative; display: inline-block; }
+.cbm .vc::before { content: '\2192'; position: absolute; top: -.62em; left: 0; right: 0; text-align: center; font-size: .7em; font-style: normal; }
+.cbm .dgm { margin: 10px 0; border-radius: 14px; overflow: hidden; background: #f8fafc; border: 1px solid rgba(148,163,184,.45); }
+.cbm .dgm svg { display: block; width: 100%; height: auto; color: #0f172a; fill: #000; stroke: none; stroke-width: 1; stroke-linecap: butt; stroke-linejoin: miter; }
+.cbm .dgp { margin: 10px 0; padding: 14px; border-radius: 12px; border: 1px dashed rgba(148,163,184,.55); font-size: .9em; display: flex; gap: 10px; align-items: center; }
+.cbm .cb { overflow-x: auto; background: rgba(0,0,0,.35); padding: 8px 10px; border-radius: 10px; font-size: .82em; white-space: pre; margin: 8px 0; }
+.cbm.bot b{color:#fff}
+.cbm p{margin:0 0 8px}
+.cbm p:last-child{margin-bottom:0}
+.cbm.bot img.up{margin-top:0}
 .yn{display:flex;gap:10px;margin-top:8px}
 .yn button{flex:1;padding:9px;border:none;border-radius:8px;font-weight:600;font-size:14px;cursor:pointer;background:#10ac84;color:#fff}
 .yn button:last-child{background:#ff4757}
@@ -526,7 +575,216 @@ let needKey=false, busy=false;
 const cbM=document.getElementById('cbMsgs'), cbIn=document.getElementById('cbIn');
 const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/\n/g,'<br>');
 function msg(cls,html){const d=document.createElement('div');d.className='cbm '+cls;d.innerHTML=html;cbM.appendChild(d);cbM.scrollTop=cbM.scrollHeight;return d;}
-const fmtAI=t=>esc(String(t).replace(/\r/g,'')).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/(^|<br>)\s*[*\-•]\s+/g,'$1• ').replace(/(^|<br>)\s*#{1,6}\s*/g,'$1').replace(/\*+/g,'').replace(/`/g,'');
+/* ===== AI jawab renderer (11th SKC Physics wala): LaTeX -> sundar math, **bold**, # heading, list, table, chemistry formula ===== */
+window.mdRender=(function(){
+/* ---------- LaTeX -> HTML (offline, tiny) ---------- */
+  var SYM = { longrightarrow:'⟶',Longrightarrow:'⟹',longleftarrow:'⟵',rightleftharpoons:'⇌',leftrightharpoons:'⇌',rightleftarrows:'⇄',uparrow:'↑',downarrow:'↓',bullet:'•',checkmark:'✓', alpha:'α',beta:'β',gamma:'γ',delta:'δ',epsilon:'ε',varepsilon:'ε',zeta:'ζ',eta:'η',theta:'θ',vartheta:'ϑ',lambda:'λ',mu:'μ',nu:'ν',xi:'ξ',pi:'π',rho:'ρ',sigma:'σ',tau:'τ',phi:'φ',varphi:'φ',chi:'χ',psi:'ψ',omega:'ω',
+    Gamma:'Γ',Delta:'Δ',Theta:'Θ',Lambda:'Λ',Pi:'Π',Sigma:'Σ',Phi:'Φ',Psi:'Ψ',Omega:'Ω',
+    cdot:'·',times:'×',div:'÷',pm:'±',mp:'∓',approx:'≈',sim:'∼',simeq:'≃',ll:'≪',gg:'≫',le:'≤',leq:'≤',ge:'≥',geq:'≥',ne:'≠',neq:'≠',equiv:'≡',propto:'∝',infty:'∞',
+    to:'→',rightarrow:'→',leftarrow:'←',Rightarrow:'⇒',Leftrightarrow:'⇔',leftrightarrow:'↔',partial:'∂',nabla:'∇',int:'∫',oint:'∮',sum:'∑',prod:'∏',circ:'°',degree:'°',
+    ldots:'…',cdots:'⋯',dots:'…',therefore:'∴',because:'∵',angle:'∠',perp:'⊥',parallel:'∥',in:'∈',hbar:'ħ',ell:'ℓ',prime:'′',
+    sin:'sin',cos:'cos',tan:'tan',cot:'cot',sec:'sec',csc:'csc',log:'log',ln:'ln',exp:'exp',lim:'lim',min:'min',max:'max' };
+  var FUNCS = { sin:1,cos:1,tan:1,cot:1,sec:1,csc:1,cosec:1,log:1,ln:1,exp:1,lim:1,min:1,max:1,sinh:1,cosh:1,tanh:1 };
+  var DP = { '(': 'M8 1Q1 50 8 99', ')': 'M2 1Q9 50 2 99', '[': 'M8 1H2V99H8', ']': 'M2 1H8V99H2', '|': 'M5 1V99', '{': 'M8 1Q4 1 4 10V40Q4 50 1 50Q4 50 4 60V90Q4 99 8 99', '}': 'M2 1Q6 1 6 10V40Q6 50 9 50Q6 50 6 60V90Q6 99 2 99' };
+  function svgP(d) { return '<svg viewBox="0 0 10 100" preserveAspectRatio="none" aria-hidden="true"><path d="' + d + '" fill="none" stroke="currentColor" stroke-width="1.3" vector-effect="non-scaling-stroke"/></svg>'; }
+  var DLM = { sqrt: svgP('M0 62L2.5 56L5 98L10 1') };
+  function dsvg(ch) { return DP[ch] ? svgP(DP[ch]) : (ch === '.' ? '' : ch); }
+  /* ---------- chemistry helpers (formulas, ions, reaction arrows) ---------- */
+  var EL = {}; ('H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Ti V Cr Mn Fe Co Ni Cu Zn As Se Br Ag Sn I Ba Au Hg Pb U').split(' ').forEach(function (e) { EL[e] = 1; });
+  var DIATOMIC = /^(?:[HONF]2|Cl2|Br2|I2|O3|P4|S8)$/;
+  function fmtFormula(f) { return f.replace(/(\d+)/g, '<sub>$1</sub>'); }
+  function ionFmt(t) {
+    var sg = t.slice(-1) === '+' ? '+' : '−', r = t.slice(0, -1), ch = sg;
+    if (/^(?:Ca2|Mg2|Fe2|Fe3|Cu2|Zn2|Mn2|Al3)$/.test(r)) { ch = r.slice(-1) + sg; r = r.slice(0, -1); }
+    return fmtFormula(r) + '<sup>' + ch + '</sup>';
+  }
+  function arrowHtml(up, dn, kind) {
+    return '<span class="xr"><span class="xt">' + up + '</span>' + (kind === 2 ? '<span class="xe">⇌</span>' : '<span class="xl' + (kind === 1 ? ' lf' : '') + '"></span>') + '<span class="xb">' + dn + '</span></span>';
+  }
+  var ION_RE = /(?<![A-Za-z0-9])(?:Ca2\+|Mg2\+|Fe2\+|Fe3\+|Cu2\+|Zn2\+|Mn2\+|Al3\+|NH4\+|H3O\+|HCO3-|NO3-|NO2-|Na\+|K\+|H\+|Li\+|Cl-|OH-)(?![A-Za-z0-9])/g;
+  var FORM_RE = /(?<![A-Za-z0-9_\u0001.])(\d{0,2})((?:[A-Z][a-z]?\d{0,2}|\((?:[A-Z][a-z]?\d{0,2})+\)\d{0,2})+)(?![A-Za-z0-9\u0002])/g;
+  function chemText(s) {
+    s = s.replace(/(?<![A-Za-z0-9])(\d{0,2})(C6H1206|H20|C02)(?![A-Za-z0-9])/g, function (a, co, f) { return co + ({ C6H1206: 'C6H12O6', H20: 'H2O', C02: 'CO2' })[f]; });
+    if (/(?:→|-{1,2}&gt;)/.test(s) && /[A-Z][a-z]?\d/.test(s)) s = s.replace(/(?<=\+\s{0,2})(\d{0,2})02(?![A-Za-z0-9])/g, '$1O2');
+    s = s.replace(ION_RE, ionFmt);
+    s = s.replace(FORM_RE, function (all, co, f) {
+      if (!/\d/.test(f)) return all;
+      if (f !== 'FADH2') {
+        var sy = f.match(/[A-Z][a-z]?/g) || [];
+        for (var k = 0; k < sy.length; k++) if (!EL[sy[k]]) return all;
+        if (sy.length < 2 && !DIATOMIC.test(f)) return all;
+      }
+      return co + fmtFormula(f);
+    });
+    return s.replace(/-{1,2}&gt;(?:\[([^\]\n]*)\])?(?:\[([^\]\n]*)\])?/g, function (a, up, dn) { return (up || dn) ? arrowHtml(up || '', dn || '', 0) : '→'; });
+  }
+  function isChemTex(s) {
+    var runs = s.match(/(?:[A-Z][a-z]?(?:_\{?\d+\}?)?){2,}/g) || [], ok = false;
+    for (var k = 0; k < runs.length && !ok; k++) {
+      if (runs[k].indexOf('_') < 0) continue;
+      var sy = runs[k].match(/[A-Z][a-z]?/g), good = true;
+      sy.forEach(function (e) { if (!EL[e]) good = false; });
+      ok = good;
+    }
+    return ok && (/\\(?:rightarrow|xrightarrow|longrightarrow|rightleftharpoons|xrightleftharpoons|to)(?![a-zA-Z])/.test(s) || /H_\{?\d*\}?O|CO_\{?\d|\bC_\{?\d+\}?H|NH_|SO_|PO_|NO_/.test(s));
+  }
+  function tex(s) {
+    var i = 0, n = s.length, chem = isChemTex(s);
+    function lab(r) { r = r.trim(); if (!r) return ''; return /[\\^_{]/.test(r) ? tex(r) : '<span class="up">' + r + '</span>'; }
+    function delim() { while (s[i] === ' ') i++; var c = s[i++] || ''; if (c === '\\') { var m2 = s.slice(i).match(/^[a-zA-Z]+/); if (m2) { i += m2[0].length; return m2[0] === 'langle' ? '⟨' : m2[0] === 'rangle' ? '⟩' : ''; } c = s[i++] || ''; } return c; }
+    function rawGroup() { if (s[i] !== '{') return s[i] ? s[i++] : ''; var d = 0, st = ++i; for (; i < n; i++) { if (s[i] === '{') d++; else if (s[i] === '}') { if (!d) break; d--; } } var r = s.slice(st, i); i++; return r; }
+    function seq(stop) { var o = ''; while (i < n) { var c = s[i]; if (c === '}') { i++; if (stop) return o; continue; } o += withScripts(); } return o; }
+    function withScripts() {
+      var b = atom();
+      for (;;) {
+        var j = i; while (s[j] === ' ') j++;
+        if (s[j] === '^') { i = j + 1; b += '<sup>' + atom() + '</sup>'; }
+        else if (s[j] === '_') { i = j + 1; b += '<sub>' + atom() + '</sub>'; }
+        else break;
+      }
+      return b;
+    }
+    function atom() {
+      while (s[i] === ' ') i++;
+      if (i >= n) return '';
+      var c = s[i], m, nm;
+      if (c === '{') { i++; return seq(true); }
+      if (c === '\\') {
+        i++; m = s.slice(i).match(/^[a-zA-Z]+/);
+        if (!m) { nm = s[i++] || ''; if (nm === '\\') return '<br>'; if (nm === ',' || nm === ';' || nm === ':') return ' '; if (nm === '!') return ''; return nm; }
+        nm = m[0]; i += nm.length;
+        if (nm === 'frac' || nm === 'dfrac' || nm === 'tfrac') { var a = atom(), d = atom(); return '<span class="fr"><span class="nu">' + a + '</span><span class="de">' + d + '</span></span>'; }
+        if (nm === 'sqrt') { if (s[i] === '[') { var k = s.indexOf(']', i); i = k < 0 ? n : k + 1; } return '<span class="sq"><span class="rd">' + DLM.sqrt + '</span><span class="ov">' + atom() + '</span></span>'; }
+        if (nm === 'xrightarrow' || nm === 'xleftarrow' || nm === 'xrightleftharpoons' || nm === 'xleftrightarrow' || nm === 'xlongrightarrow') {
+          while (s[i] === ' ') i++;
+          var below = '', above = '';
+          if (s[i] === '[') { var kb = s.indexOf(']', i); below = s.slice(i + 1, kb < 0 ? n : kb); i = kb < 0 ? n : kb + 1; }
+          while (s[i] === ' ') i++;
+          if (s[i] === '{') above = rawGroup();
+          return arrowHtml(lab(above), lab(below), nm === 'xleftarrow' ? 1 : (nm === 'xrightleftharpoons' || nm === 'xleftrightarrow') ? 2 : 0);
+        }
+        if (nm === 'overset' || nm === 'stackrel') { var o1 = atom(), o2 = atom(); return '<span class="xr"><span class="xt">' + o1 + '</span><span class="xm">' + o2 + '</span></span>'; }
+        if (nm === 'underset') { var u1 = atom(), u2 = atom(); return '<span class="xr"><span class="xm">' + u2 + '</span><span class="xb">' + u1 + '</span></span>'; }
+        if (nm === 'ce') return '<span class="up">' + chemText(rawGroup()) + '</span>';
+        if (nm === 'text' || nm === 'mathrm' || nm === 'operatorname' || nm === 'textrm') return '<span class="up">' + rawGroup() + '</span>';
+        if (nm === 'mathbf' || nm === 'textbf' || nm === 'boldsymbol') return '<b>' + atom() + '</b>';
+        if (nm === 'vec') return '<span class="vc">' + atom() + '</span>';
+        if (nm === 'hat') return atom() + '\u0302';
+        if (nm === 'bar' || nm === 'overline') return '<span class="ov">' + atom() + '</span>';
+        if (nm === 'dot') return atom() + '\u0307';
+        if (nm === 'left') { var lc = delim(); var inner = ''; while (i < n && s.substr(i, 6) !== '\\right' && s[i] !== '}') inner += withScripts(); var rc = ''; if (s.substr(i, 6) === '\\right') { i += 6; rc = delim(); } return '<span class="dl"><span class="dg">' + dsvg(lc, 0) + '</span><span class="in">' + inner + '</span><span class="dg">' + dsvg(rc, 1) + '</span></span>'; }
+        if (nm === 'right') { delim(); return ''; }
+        if (nm === 'big' || nm === 'Big' || nm === 'bigg' || nm === 'Bigg') return '';
+        if (nm === 'quad' || nm === 'qquad') return '\u2003';
+        if (FUNCS[nm]) return '<span class="up">' + nm + '</span>';
+        return SYM[nm] !== undefined ? SYM[nm] : '';
+      }
+      if (/[a-zA-Z]/.test(c)) { m = s.slice(i).match(/^[a-zA-Z]+/)[0]; if (FUNCS[m]) { i += m.length; return '<span class="up">' + m + '</span>'; } i++; return chem ? c : '<i>' + c + '</i>'; }
+      if (c === '&') { m = s.slice(i).match(/^&[a-z]+;/); if (m) { i += m[0].length; return m[0] === '&lt;' ? '&lt;' : m[0] === '&gt;' ? '&gt;' : m[0]; } }
+      if (c === '~') { i++; return ' '; }
+      if (c === "'") { i++; return '′'; }
+      if (c === '-') { i++; return '−'; }
+      i++; return c;
+    }
+    try { return '<span class="mj">' + seq(false) + '</span>'; } catch (e) { return s; }
+  }
+  var MATH_RE = /\$\$([\s\S]+?)\$\$|\\\[([\s\S]+?)\\\]|\\\(([\s\S]+?)\\\)|\$([^$\n\s](?:[^$\n]*?[^$\n\s])?)\$/g;
+  function extractMath(t, store) {
+    return t.replace(MATH_RE, function (all, a, b, c, d) {
+      var disp = a != null || b != null, body = a != null ? a : b != null ? b : c != null ? c : d;
+      var h = tex(body.trim()); if (disp) h = '<span class="mb">' + h + '</span>';
+      store.push(h); return '\u0001' + (store.length - 1) + '\u0002';
+    });
+  }
+  function esc(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+  function inline(s) { s = chemText(s); return s.replace(/`([^`]+)`/g, '<code>$1</code>').replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>').replace(/(^|[^*\w])\*([^*\n]+?)\*(?![*\w])/g, '$1<i>$2</i>'); }
+  /* ---------- diagrams: ```svg blocks -> picture (sanitised), code blocks ---------- */
+  function cleanSvg(raw) {
+    try {
+      raw = raw.replace(/&(?!#?\w+;)/g, '&amp;');
+      var doc = new DOMParser().parseFromString(raw, 'image/svg+xml'), svg = doc.documentElement;
+      if (!svg || String(svg.nodeName).toLowerCase() !== 'svg' || doc.getElementsByTagName('parsererror').length) return null;
+      var bad = svg.querySelectorAll('script,foreignObject,iframe,object,embed,image,audio,video,set,animate,animateTransform,animateMotion'), i, j;
+      for (i = 0; i < bad.length; i++) if (bad[i].parentNode) bad[i].parentNode.removeChild(bad[i]);
+      var lk = svg.querySelectorAll('a');
+      for (i = 0; i < lk.length; i++) { var pa = lk[i].parentNode; if (!pa) continue; while (lk[i].firstChild) pa.insertBefore(lk[i].firstChild, lk[i]); pa.removeChild(lk[i]); }
+      var sty = svg.querySelectorAll('style');
+      for (i = 0; i < sty.length; i++) if (/@import|url\s*\(\s*['"]?(?!#)/i.test(sty[i].textContent)) sty[i].parentNode.removeChild(sty[i]);
+      var all = [svg].concat([].slice.call(svg.querySelectorAll('*')));
+      for (i = 0; i < all.length; i++) {
+        var at = [].slice.call(all[i].attributes);
+        for (j = 0; j < at.length; j++) {
+          var nm = at[j].name.toLowerCase(), v = at[j].value;
+          if (nm.indexOf('on') === 0 || ((nm === 'href' || nm === 'xlink:href') && v.charAt(0) !== '#') || (/url\s*\(\s*['"]?(?!#)/i.test(v)) || /javascript:/i.test(v)) all[i].removeAttribute(at[j].name);
+        }
+      }
+      if (!svg.getAttribute('viewBox')) svg.setAttribute('viewBox', '0 0 ' + (parseFloat(svg.getAttribute('width')) || 360) + ' ' + (parseFloat(svg.getAttribute('height')) || 440));
+      svg.removeAttribute('width'); svg.removeAttribute('height');
+      svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg'); svg.setAttribute('preserveAspectRatio', 'xMidYMid meet'); if (!svg.getAttribute('font-family')) svg.setAttribute('font-family', 'Roboto, "Segoe UI", Arial, Helvetica, sans-serif');
+      return new XMLSerializer().serializeToString(svg);
+    } catch (e) { return null; }
+  }
+  function codeBlock(lang, body, closed, done) {
+    lang = (lang || '').toLowerCase();
+    if (lang === 'svg' || (lang === 'xml' && /<svg[\s>]/i.test(body))) {
+      if (!closed) return '<div class="dgp">' + (done ? 'Diagram poora nahi aaya — dobara pucho.' : 'Diagram ban raha hai…') + '</div>';
+      var c = cleanSvg(body.trim());
+      if (!c) return '<div class="dgp">Diagram sahi se nahi bana — dobara pucho.</div>';
+      return '<div class="dgm">' + c + '</div>';
+    }
+    return '<pre class="cb"><code>' + esc(body) + '</code></pre>';
+  }
+  function md(src, done) {
+    var store = [];
+    function hold(h) { store.push(h); return '\n\u0001T' + (store.length - 1) + '\u0002\n'; }
+    src = String(src).replace(/\r/g, '')
+      .replace(/```[ \t]*([\w-]*)[ \t]*\n([\s\S]*?)\n?```/g, function (a, lang, body) { return hold(codeBlock(lang, body, true, done)); })
+      .replace(/```[ \t]*([\w-]*)[ \t]*\n([\s\S]*)$/, function (a, lang, body) { return hold(codeBlock(lang, body, false, done)); })
+      .replace(/<svg[\s\S]*?<\/svg>/gi, function (a) { return hold(codeBlock('svg', a, true, done)); });
+    var lines = extractMath(esc(src), store).split('\n'), out = [], list = null, para = [], m;
+    function flushP() { if (para.length) { out.push('<p>' + inline(para.join('<br>')) + '</p>'); para = []; } }
+    function closeL() { if (list) { out.push('</' + list + '>'); list = null; } }
+    function res(h) { return h.replace(/\u0001(\d+)\u0002/g, function (x, k) { return store[+k]; }); }
+    function cells(r) { r = r.trim().replace(/^\|/, '').replace(/\|$/, ''); return r.split('|').map(function (c) { return c.trim(); }); }
+    var TROW = /^\s*\|.*\|\s*$/, TSEP = /^\s*\|?\s*:?-+:?\s*(?:\|\s*:?-+:?\s*)*\|?\s*$/;
+    var merged = [], q;
+    for (q = 0; q < lines.length; q++) {
+      if (TROW.test(lines[q]) && q + 1 < lines.length && TSEP.test(lines[q + 1]) && lines[q + 1].indexOf('-') > -1) {
+        var head = cells(lines[q]), al = cells(lines[q + 1]).map(function (c) { return /^:-+:$/.test(c) ? 'center' : /-:$/.test(c) ? 'right' : ''; }), rows = [];
+        q += 2;
+        while (q < lines.length && TROW.test(lines[q])) { rows.push(cells(lines[q])); q++; }
+        q--;
+        var th = '<div class="tw"><table><thead><tr>' + head.map(function (c, j) { return '<th' + (al[j] ? ' style="text-align:' + al[j] + '"' : '') + '>' + res(inline(c)) + '</th>'; }).join('') + '</tr></thead><tbody>' +
+          rows.map(function (r) { return '<tr>' + head.map(function (_, j) { return '<td' + (al[j] ? ' style="text-align:' + al[j] + '"' : '') + '>' + res(inline(r[j] || '')) + '</td>'; }).join('') + '</tr>'; }).join('') + '</tbody></table></div>';
+        store.push(th); merged.push('\u0001T' + (store.length - 1) + '\u0002');
+      } else merged.push(lines[q]);
+    }
+    lines = merged;
+    lines.forEach(function (l) {
+      if (!l.trim()) { flushP(); closeL(); return; }
+      if ((m = l.match(/^\u0001T(\d+)\u0002$/))) { flushP(); closeL(); out.push(store[+m[1]]); return; }
+      if ((m = l.match(/^\s*#{1,4}\s+(.*)/))) { flushP(); closeL(); out.push('<p class="h">' + inline(m[1]) + '</p>'); return; }
+      if ((m = l.match(/^\s*[-*•]\s+(.*)/))) { flushP(); if (list !== 'ul') { closeL(); out.push('<ul>'); list = 'ul'; } out.push('<li>' + inline(m[1]) + '</li>'); return; }
+      if ((m = l.match(/^\s*\d+[.)]\s+(.*)/))) { flushP(); if (list !== 'ol') { closeL(); out.push('<ol>'); list = 'ol'; } out.push('<li>' + inline(m[1]) + '</li>'); return; }
+      closeL(); para.push(l);
+    });
+    flushP(); closeL();
+    return out.join('').replace(/\u0001(\d+)\u0002/g, function (x, k) { return store[+k]; });
+  }
+
+  return md;
+})();
+/* streaming ke beech adhoora $...$ aadha-adhoora na dikhe; jawab poora hone par normal render */
+const fmtAI=(t,partial)=>{
+  t=String(t).replace(/\r/g,'');
+  if(partial){
+    if((t.match(/\$\$/g)||[]).length%2) t=t.slice(0,t.lastIndexOf('$$'))+' …';
+    else if((t.replace(/\$\$[\s\S]*?\$\$/g,'').match(/\$/g)||[]).length%2) t=t.slice(0,t.lastIndexOf('$'))+' …';
+  }
+  return window.mdRender(t,!partial);
+};
+/* AI ko bolo ki formula LaTeX mein likhe, taaki upar ka renderer use sundar dikha sake */
+const MATHRULE='Formula/equation ko LaTeX mein single dollar ke andar likho, jaise $v = u + at$, $s = ut + \\frac{1}{2}at^2$, $\\sqrt{gR}$, $\\Delta T$. Bada formula alag line par $$ ... $$ mein. Math ko kabhi plain text mein {, \\, ^ ya # ke saath mat likho.';
 const bot=h=>msg('bot',h), usr=t=>msg('usr',esc(t));
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 
@@ -552,10 +810,11 @@ async function getModels(k){
 async function gem(prompt,json,img){
   const k=localStorage.getItem('cbKey'); if(!k) throw new Error('API key nahi hai');
   const ms=await getModels(k); let last='';
+  const ptxt=json?prompt:prompt+'\n\n'+MATHRULE;
   for(const m of ms){
     for(let t=0;t<2;t++){
       try{
-        const r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${m}:generateContent`,{method:'POST',headers:{'Content-Type':'application/json','x-goog-api-key':k},body:JSON.stringify({contents:[{parts:img?[{inlineData:{mimeType:img.mime,data:img.data}},{text:prompt}]:[{text:prompt}]}],generationConfig:json?{responseMimeType:'application/json'}:{}})});
+        const r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${m}:generateContent`,{method:'POST',headers:{'Content-Type':'application/json','x-goog-api-key':k},body:JSON.stringify({contents:[{parts:img?[{inlineData:{mimeType:img.mime,data:img.data}},{text:ptxt}]:[{text:ptxt}]}],generationConfig:json?{responseMimeType:'application/json'}:{}})});
         const d=await r.json().catch(()=>({}));
         if(!r.ok){
           const em=d.error?.message||('HTTP '+r.status);
@@ -636,11 +895,12 @@ async function gma(prompt,d){
   let t='';
   if(llm&&llm.native){
     d.innerHTML='⏳ Soch raha hoon…';
-    const r=await NAT().generate({prompt:`<start_of_turn>user\n${prompt}<end_of_turn>\n<start_of_turn>model\n`});
+    const r=await NAT().generate({prompt:`<start_of_turn>user\n${prompt}\n\n${MATHRULE}<end_of_turn>\n<start_of_turn>model\n`});
     t=String((r&&r.text)||'').replace(/<end_of_turn>[\s\S]*$/,'').trim();
     d.innerHTML=fmtAI(t);cbM.scrollTop=cbM.scrollHeight;return t;
   }
-  await llm.generateResponse(`<start_of_turn>user\n${prompt}<end_of_turn>\n<start_of_turn>model\n`,(x)=>{t+=x;d.innerHTML=fmtAI(t);cbM.scrollTop=cbM.scrollHeight;});
+  await llm.generateResponse(`<start_of_turn>user\n${prompt}\n\n${MATHRULE}<end_of_turn>\n<start_of_turn>model\n`,(x)=>{t+=x;d.innerHTML=fmtAI(t,true);cbM.scrollTop=cbM.scrollHeight;});
+  d.innerHTML=fmtAI(t);cbM.scrollTop=cbM.scrollHeight;
   return t;
 }
 
