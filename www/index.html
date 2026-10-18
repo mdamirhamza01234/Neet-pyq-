@@ -47,11 +47,12 @@
   }
   .card-title { font-size: 17px; font-weight: 600; margin-bottom: 4px; }
   .card-sub { font-size: 13px; color: #b0bec5; margin-bottom: 14px; }
-  .btn-col { display: flex; flex-direction: column; gap: 10px; }
+  .btn-col { display: flex; flex-direction: row; gap: 10px; }
   .btn {
-    display: block; width: 100%; text-align: center;
-    padding: 12px 14px; border-radius: 8px; border: none;
-    font-size: 14px; font-weight: 600; cursor: pointer; font-family: inherit;
+    display: flex; align-items: center; justify-content: center;
+    flex: 1 1 0; min-width: 0; text-align: center;
+    padding: 12px 8px; border-radius: 8px; border: none;
+    font-size: 22px; line-height: 1; font-weight: 600; cursor: pointer; font-family: inherit;
   }
   .btn:active { transform: scale(0.97); }
   .btn-paper { background: #2e86de; color: #fff; }
@@ -554,9 +555,9 @@ header{padding:0 46px}
       <div class="card-title">${t.title}</div>
       <div class="card-sub">${t.sub}</div>
       <div class="btn-col">
-        <button class="btn btn-paper">📄 Question Paper</button>
-        <button class="btn btn-key">✅ Answer Key</button>
-        <button class="btn btn-mock">🖥️ Start Mock Test</button>
+        <button class="btn btn-paper" aria-label="Question Paper" title="Question Paper">📄</button>
+        <button class="btn btn-key" aria-label="Answer Key" title="Answer Key">✅</button>
+        <button class="btn btn-mock" aria-label="Start Mock Test" title="Start Mock Test">🖥️</button>
       </div>
     `;
     const [paperBtn, keyBtn, mockBtn] = card.querySelectorAll('.btn');
