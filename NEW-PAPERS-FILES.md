@@ -6,10 +6,15 @@ Jab tak PDF nahi aati, button dabane par saaf message dikhta hai (crash nahi hot
 Jin papers ki ek hi PDF mein question + solution/answers dono hain, unka Answer Key button ya to
 mock test ke data se table banata hai, ya usi PDF ke answer-key page par khulta hai.
 
-## Add ho chuke (16)
+## Add ho chuke (21)
 
 | Paper | PDF | Answer Key |
 |-------|-----|------------|
+| Re-NEET 2024 | `pdfs/reneet-2024-paper.pdf` | mock data se |
+| NEET 2023 (7 May 2023) | `pdfs/neet-2023-paper.pdf` | mock data se |
+| NEET 2021 | `pdfs/neet-2021-paper.pdf` | mock data se |
+| NEET 2019 (5 May, sirf questions) | `pdfs/neet-2019-paper.pdf` | mock data se |
+| NEET 2019 — Odisha / Karnataka (20 May) | `pdfs/neet-2019-odisha-karnataka-paper.pdf` | mock data se |
 | NEET 2022 (17 July 2022, Code T2) | `pdfs/neet-2022-paper.pdf` | mock data se |
 | NEET 2023 — Manipur | `pdfs/neet-2023-manipur-paper.pdf` | mock data se |
 | NEET 2018 | `pdfs/neet-2018-paper.pdf` | mock data se |
@@ -35,11 +40,6 @@ mock test ke data se table banata hai, ya usi PDF ke answer-key page par khulta 
 | NEET 2026 — 3 May | `pdfs/NEET_2026_Code_11_Questions_Only_Final_With_First_Page.pdf` | `pdfs/3 May 2026 Neet .pdf` (page 21) |
 | NEET 2025 — 4 May | `pdfs/Code 45 paper.pdf` | mock data se |
 | NEET 2024 — 5 May | `pdfs/2024 Neet 5 May .pdf` | mock data se |
-| Re-NEET 2024 | `pdfs/reneet-2024-paper.pdf` | `pdfs/reneet-2024-key.pdf` |
-| NEET 2023 | `pdfs/neet-2023-paper.pdf` | `pdfs/neet-2023-key.pdf` |
-| NEET 2021 | `pdfs/neet-2021-paper.pdf` | `pdfs/neet-2021-key.pdf` |
-| NEET 2019 | `pdfs/neet-2019-paper.pdf` | `pdfs/neet-2019-key.pdf` |
-| NEET 2019 — Odisha / Karnataka | `pdfs/neet-2019-odisha-karnataka-paper.pdf` | `pdfs/neet-2019-odisha-karnataka-key.pdf` |
 
 Agar kisi paper ki ek hi PDF mein solutions bhi hain, to bas paper wali file daalo aur `index.html` mein
 us paper ki `keyFile` ko `""` kar do.
