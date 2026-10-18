@@ -6,11 +6,12 @@ Jab tak PDF nahi aati, button dabane par saaf message dikhta hai (crash nahi hot
 Jin papers ki ek hi PDF mein question + solution/answers dono hain, unka Answer Key button ya to
 mock test ke data se table banata hai, ya usi PDF ke answer-key page par khulta hai.
 
-## Add ho chuke (11)
+## Add ho chuke (12)
 
 | Paper | PDF | Answer Key |
 |-------|-----|------------|
 | NEET 2022 (17 July 2022, Code T2) | `pdfs/neet-2022-paper.pdf` | mock data se |
+| NEET 2023 — Manipur | `pdfs/neet-2023-manipur-paper.pdf` | mock data se |
 | NEET 2020 | `pdfs/neet-2020-paper.pdf` | mock data se |
 | NEET 2020 — Corona | `pdfs/neet-2020-corona-paper.pdf` | mock data se |
 | NEET 2016 — Phase 1 | `pdfs/neet-2016-phase-1-paper.pdf` | mock data se |
@@ -32,7 +33,6 @@ mock test ke data se table banata hai, ya usi PDF ke answer-key page par khulta 
 | NEET 2024 — 5 May | `pdfs/2024 Neet 5 May .pdf` | mock data se |
 | Re-NEET 2024 | `pdfs/reneet-2024-paper.pdf` | `pdfs/reneet-2024-key.pdf` |
 | NEET 2023 | `pdfs/neet-2023-paper.pdf` | `pdfs/neet-2023-key.pdf` |
-| NEET 2023 — Manipur | `pdfs/neet-2023-manipur-paper.pdf` | `pdfs/neet-2023-manipur-key.pdf` |
 | NEET 2021 | `pdfs/neet-2021-paper.pdf` | `pdfs/neet-2021-key.pdf` |
 | NEET 2019 | `pdfs/neet-2019-paper.pdf` | `pdfs/neet-2019-key.pdf` |
 | NEET 2019 — Odisha / Karnataka | `pdfs/neet-2019-odisha-karnataka-paper.pdf` | `pdfs/neet-2019-odisha-karnataka-key.pdf` |
